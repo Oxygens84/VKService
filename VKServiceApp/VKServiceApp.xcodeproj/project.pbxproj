@@ -12,6 +12,11 @@
 		51CC9D652152CDC0003A0BBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51CC9D632152CDC0003A0BBC /* Main.storyboard */; };
 		51CC9D672152CDC0003A0BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51CC9D662152CDC0003A0BBC /* Assets.xcassets */; };
 		51CC9D6A2152CDC0003A0BBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51CC9D682152CDC0003A0BBC /* LaunchScreen.storyboard */; };
+		51CC9D7C215678EC003A0BBC /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */; };
+		51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */; };
+		51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */; };
+		51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */; };
+		51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D8321568CBF003A0BBC /* Dictionaries.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		51CC9D662152CDC0003A0BBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51CC9D692152CDC0003A0BBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		51CC9D6B2152CDC0003A0BBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
+		51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewController.swift; sourceTree = "<group>"; };
+		51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsViewController.swift; sourceTree = "<group>"; };
+		51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewController.swift; sourceTree = "<group>"; };
+		51CC9D8321568CBF003A0BBC /* Dictionaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,8 @@
 				51CC9D712152D39E003A0BBC /* Models */,
 				51CC9D722152D3A4003A0BBC /* Controllers */,
 				51CC9D732152D3AB003A0BBC /* Views */,
+				51CC9D632152CDC0003A0BBC /* Main.storyboard */,
+				51CC9D682152CDC0003A0BBC /* LaunchScreen.storyboard */,
 				51CC9D662152CDC0003A0BBC /* Assets.xcassets */,
 				51CC9D6B2152CDC0003A0BBC /* Info.plist */,
 			);
@@ -67,6 +79,7 @@
 		51CC9D712152D39E003A0BBC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				51CC9D8321568CBF003A0BBC /* Dictionaries.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -75,6 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				51CC9D612152CDC0003A0BBC /* LoginViewController.swift */,
+				51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */,
+				51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */,
+				51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */,
+				51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -82,8 +99,6 @@
 		51CC9D732152D3AB003A0BBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				51CC9D632152CDC0003A0BBC /* Main.storyboard */,
-				51CC9D682152CDC0003A0BBC /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,8 +183,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
+				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
 				51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */,
+				51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */,
+				51CC9D7C215678EC003A0BBC /* GroupsViewController.swift in Sources */,
 				51CC9D602152CDC0003A0BBC /* AppDelegate.swift in Sources */,
+				51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

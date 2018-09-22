@@ -9,45 +9,89 @@
 import UIKit
 
 
-
 class LoginViewController : UIViewController {
     
+    //-----------------------------------
+    //for testing
     var adminForTest = ["admin","12345"]
+    let testingMode: Bool = true
+    //-----------------------------------
 
     @IBOutlet weak var loginPageScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
+    @IBOutlet weak var serviceTitle: UITextField!
     
     @IBAction func loginButton(_ sender: Any) {
         let login = userNameField.text!
         let password = userPasswordField.text!
-        if login == adminForTest[0] && password == adminForTest[1] {
-            print("sign up: success")
-            userNameField.text = ""
-            userPasswordField.text = ""
+        if checkLoginAndPassword(userLogin: login, userPassword: password){
+            performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         } else {
-            print("sign up: failed")
-            let alert = UIAlertController(
-                title: "Error",
-                message: "Invalid login or password",
-                preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+            performAlert(message: Messages.loginFailed.rawValue)
         }
     }
     
+    @IBAction func logOut(_ segue: UIStoryboardSegue){
+        cleanFields()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(#function)
+        addHideKeyboardGesture()
+        userPasswordField.isSecureTextEntry = true
         
-        //for testing
-        //userNameField.text = adminForTest[0]
-        //userPasswordField.text = adminForTest[1]
-        
+        if testingMode {
+            userNameField.text = adminForTest[0]
+            userPasswordField.text = adminForTest[1]
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToNotification()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromNotification()
+    }
+    
+    
+    
+    
+    func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
+        if userLogin == adminForTest[0] && userPassword == adminForTest[1] {
+            return true
+        }
+        return false
+    }
+    
+    func performAlert(message: String){
+        let alert = UIAlertController(
+            title: Titles.error.rawValue,
+            message: message,
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func cleanFields(){
+        userNameField.text = ""
+        userPasswordField.text = ""
+    }
+    
+    func addHideKeyboardGesture(){
         let hideKeyboardGesture = UITapGestureRecognizer(
             target: self,
             action: #selector(self.hideKeyboard))
         loginPageScrollView?.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
+    
+    @objc func hideKeyboard(){
+        self.loginPageScrollView?.endEditing(true)
     }
     
     @objc func keyboardWasShown(notification: Notification){
@@ -64,8 +108,7 @@ class LoginViewController : UIViewController {
         loginPageScrollView.scrollIndicatorInsets = contentInsets
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func subscribeToNotification(){
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWasShown),
@@ -78,9 +121,8 @@ class LoginViewController : UIViewController {
             object: nil)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+
+    func unsubscribeFromNotification(){
         NotificationCenter.default.removeObserver(
             self,
             name: NSNotification.Name.UIKeyboardWillShow,
@@ -91,10 +133,5 @@ class LoginViewController : UIViewController {
             object: nil)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
-    @objc func hideKeyboard(){
-        self.loginPageScrollView?.endEditing(true)
-    }
-
 }
 
