@@ -14,6 +14,13 @@ enum SeguesId: String {
     case goToFriendInfo = "goToFriendInfo"
 }
 
+enum CellNames: String {
+    case myFriendsCell = "FriendCell"
+    case friendInfoCell = "FriendInfoCell"
+    case myGroupCell = "MyGroupCell"
+    case allGroupCell = "AllGroupCell"
+}
+
 enum Messages: String {
     case loginFailed = "Invalid login or password"
 }
@@ -21,4 +28,8 @@ enum Messages: String {
 enum Titles: String {
     case error = "Error"
     case ok = "OK"
+}
+
+enum Defaults: String {
+    case friendName = "Unknown"
 }
