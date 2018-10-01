@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6C216161B800D59E46 /* ImageBuilder.swift */; };
+		51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6E21617E1800D59E46 /* ViewBuilder.swift */; };
+		51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A7021618D8400D59E46 /* PhotoLike.swift */; };
 		517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */; };
 		517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */; };
 		517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51175A6C216161B800D59E46 /* ImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBuilder.swift; sourceTree = "<group>"; };
+		51175A6E21617E1800D59E46 /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
+		51175A7021618D8400D59E46 /* PhotoLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLike.swift; sourceTree = "<group>"; };
 		517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewCell.swift; sourceTree = "<group>"; };
 		517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				51CC9D8321568CBF003A0BBC /* Dictionaries.swift */,
 				51CC9D89215C1390003A0BBC /* Friend.swift */,
 				517EDB1E215C327A0072DA41 /* Group.swift */,
+				51175A7021618D8400D59E46 /* PhotoLike.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +124,8 @@
 				517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */,
 				517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */,
 				517EDB1C215C2D250072DA41 /* MyGroupsViewCell.swift */,
+				51175A6C216161B800D59E46 /* ImageBuilder.swift */,
+				51175A6E21617E1800D59E46 /* ViewBuilder.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,7 +218,10 @@
 				51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */,
 				517EDB1F215C327A0072DA41 /* Group.swift in Sources */,
 				517EDB1D215C2D250072DA41 /* MyGroupsViewCell.swift in Sources */,
+				51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */,
+				51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */,
 				51CC9D7C215678EC003A0BBC /* GroupsViewController.swift in Sources */,
+				51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */,
 				51CC9D602152CDC0003A0BBC /* AppDelegate.swift in Sources */,
 				51CC9D8A215C1390003A0BBC /* Friend.swift in Sources */,
 				51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */,
