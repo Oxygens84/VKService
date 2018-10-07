@@ -12,10 +12,14 @@ class Friend {
     
     var friend: String
     var avatar: String
+    var avatarLikes: Int
+    var myAvatarLike: Bool
     
-    init(friend: String, avatar: String){
+    init(friend: String, avatar: String, avatarLikes: Int){
         self.friend = friend
         self.avatar = avatar
+        self.avatarLikes = avatarLikes
+        self.myAvatarLike = false
     }
     
     func getFriendName() -> String{
@@ -24,5 +28,21 @@ class Friend {
     
     func getFriendAvatar() -> String{
         return avatar
+    }
+    
+    func getAvatarLikes() -> Int{
+        return avatarLikes
+    }
+    
+    func setAvatarLikes(total: Int){
+        avatarLikes = total
+    }
+    
+    func getMyAvatarLike() -> Bool{
+        return myAvatarLike
+    }
+    
+    func setMyAvatarLike(_ value: Bool){
+        myAvatarLike = value
     }
 }

@@ -11,11 +11,11 @@ import UIKit
 class MyFriendsViewController: UITableViewController {
 
     var friendsInfo: [Friend] = [
-        Friend(friend: "Winnie", avatar: "Winnie"),
-        Friend(friend: "Eeyore", avatar: "Eeyore"),
-        Friend(friend: "Piglet", avatar: "Piglet"),
-        Friend(friend: "Daddy", avatar: "Daddy"),
-        Friend(friend: "Unknown", avatar: "Unknown")
+        Friend(friend: "Winnie", avatar: "Winnie", avatarLikes: 1005),
+        Friend(friend: "Eeyore", avatar: "Eeyore", avatarLikes: 2005),
+        Friend(friend: "Piglet", avatar: "Piglet", avatarLikes: 3005),
+        Friend(friend: "Daddy", avatar: "Daddy", avatarLikes: 4005),
+        Friend(friend: "Unknown", avatar: "Unknown", avatarLikes: 5005)
     ]
     
     var valueSentFromSecondViewController:[String]?
@@ -39,7 +39,7 @@ class MyFriendsViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileVC = segue.destination as? FriendInfoViewController {
             if let indexPath = tableView.indexPathForSelectedRow{
-                profileVC.friendName = friendsInfo[indexPath.row].getFriendName()
+                profileVC.friend =  friendsInfo[indexPath.row]
             }
         }
     }
