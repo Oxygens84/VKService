@@ -10,14 +10,20 @@ import Foundation
 
 class Group {
     
+    var id: Int
     var group: String
     var avatar: String
     var members: Int
     
-    init(group: String, avatar: String, members: Int){
+    init(id: Int, group: String, avatar: String, members: Int){
+        self.id = id
         self.group = group
         self.avatar = avatar
         self.members = members
+    }
+    
+    func getGroupId() -> Int{
+        return id
     }
     
     func getGroupName() -> String{
