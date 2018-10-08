@@ -12,14 +12,13 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var table: UITableView!
     
-    var friendsInfo: [Friend] = [
-        Friend(friend: "Winnie", avatar: "Winnie", avatarLikes: 1005),
-        Friend(friend: "Eeyore", avatar: "Eeyore", avatarLikes: 2005),
-        Friend(friend: "Piglet", avatar: "Piglet", avatarLikes: 3005),
-        Friend(friend: "Daddy", avatar: "Daddy", avatarLikes: 4005),
-        Friend(friend: "Winnie False", avatar: "Winnie", avatarLikes: 1005),
-        Friend(friend: "Unknown", avatar: "Unknown", avatarLikes: 5005)
-    ]
+    var friendsInfoSorted: [Friend] = [
+        Friend(id: 1, friend: "Winnie", avatar: "Winnie", avatarLikes: 1005),
+        Friend(id: 2, friend: "Eeyore", avatar: "Eeyore", avatarLikes: 2005),
+        Friend(id: 3, friend: "Piglet", avatar: "Piglet", avatarLikes: 3005),
+        Friend(id: 4, friend: "Daddy", avatar: "Daddy", avatarLikes: 4005),
+        Friend(id: 5, friend: "Win Unknown", avatar: "Unknown", avatarLikes: 5005)
+    ].sorted(by: { $0.friend < $1.friend })
     
     let searchController = UISearchController()
     
@@ -35,7 +34,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         sections = getSections()
         super.viewDidLoad()
-        filteredList = friendsInfo
+        filteredList = friendsInfoSorted
         addSearch()
         table.rowHeight = UITableViewAutomaticDimension
         table.estimatedRowHeight = UITableViewAutomaticDimension
@@ -46,14 +45,19 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredList.count
+        let name = self.tableView(tableView, titleForHeaderInSection: section)
+        return getElementsInSections(section: name!).count
+        //return filteredList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myFriendsCell.rawValue, for: indexPath) as! MyFriendsViewCell
         
-        let friend = filteredList[indexPath.row]
         let headerTitle = self.tableView(tableView, titleForHeaderInSection: indexPath.section)
+        
+        let elements = getElementsInSections(section: headerTitle!)
+        let friend = elements[indexPath.row]
+        //let friend = filteredList[indexPath.row]
         
         cell.friendName.text = friend.getFriendName()
         cell.friendAvatar.image = UIImage(named: friend.getFriendAvatar())
@@ -83,7 +87,11 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileVC = segue.destination as? FriendInfoViewController {
             if let indexPath = tableView.indexPathForSelectedRow{
-                profileVC.friend =  filteredList[indexPath.row]
+                let headerTitle = self.tableView(tableView, titleForHeaderInSection: indexPath.section)
+                let elements = getElementsInSections(section: headerTitle!)
+                let friend = elements[indexPath.row]
+                profileVC.friend = friend
+                //profileVC.friend = filteredList[indexPath.row]
             }
         }
     }
@@ -98,13 +106,13 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
         self.searchText = searchText
         if searchText != "" {
             filteredList.removeAll()
-            for element in friendsInfo {
+            for element in friendsInfoSorted {
                 if element.getFriendName().lowercased().contains(searchText.lowercased() ) {
                     filteredList.append(element)
                 }
             }
         } else {
-            filteredList = friendsInfo
+            filteredList = friendsInfoSorted
         }
         tableView.reloadData()
     }
@@ -113,9 +121,21 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
     func getSections() -> [String]{
         var uniqueChar: [String] = []
         for element in filteredList {
-            uniqueChar.append(getFirstLetter(element.getFriendName()))
+            if !uniqueChar.contains(getFirstLetter(element.getFriendName())){
+                uniqueChar.append(getFirstLetter(element.getFriendName()))
+            }
         }
         return uniqueChar
+    }
+    
+    func getElementsInSections(section: String) -> [Friend]{
+        var res: [Friend] = []
+        for element in filteredList {
+            if getFirstLetter(element.getFriendName()).contains(section){
+                res.append(element)
+            }
+        }
+        return res
     }
 
     func getFirstLetter(_ text: String) -> String{

@@ -36,7 +36,7 @@ class FriendInfoViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellNames.friendInfoCell.rawValue, for: indexPath) as! FriendInfoViewCell
-        cell.friendPhoto.image = UIImage(named: friend!.getFriendName())
+        cell.friendPhoto.image = UIImage(named: friend!.getFriendAvatar())
         cell.likeFriendPhoto.text = String(friend!.getAvatarLikes())
         return cell
     }

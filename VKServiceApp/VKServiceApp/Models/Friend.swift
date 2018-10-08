@@ -10,17 +10,24 @@ import Foundation
 
 class Friend {
     
+    var id: Int
     var friend: String
     var avatar: String
     var avatarLikes: Int
     var myAvatarLike: Bool
     
-    init(friend: String, avatar: String, avatarLikes: Int){
+    init(id: Int, friend: String, avatar: String, avatarLikes: Int){
+        self.id = id
         self.friend = friend
         self.avatar = avatar
         self.avatarLikes = avatarLikes
         self.myAvatarLike = false
     }
+    
+    func getFriendId() -> Int{
+        return id
+    }
+    
     
     func getFriendName() -> String{
         return friend
