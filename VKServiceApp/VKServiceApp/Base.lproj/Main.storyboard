@@ -343,7 +343,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3V-AD-o0F">
-                                            <rect key="frame" x="110" y="10.000000000000002" width="294" height="28.666666666666671"/>
+                                            <rect key="frame" x="110" y="10" width="294" height="70"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -372,6 +372,7 @@
                                         <constraint firstAttribute="bottom" secondItem="DRE-fa-lNz" secondAttribute="bottom" constant="10" id="DkY-13-L8t"/>
                                         <constraint firstItem="DRE-fa-lNz" firstAttribute="leading" secondItem="XXB-ve-T2U" secondAttribute="leading" constant="20" id="MRE-S1-Xbd"/>
                                         <constraint firstAttribute="trailing" secondItem="D3V-AD-o0F" secondAttribute="trailing" constant="10" id="WPo-PD-70A"/>
+                                        <constraint firstAttribute="bottom" secondItem="uYa-X7-KJL" secondAttribute="bottom" constant="10" id="ZT6-c2-hLK"/>
                                         <constraint firstItem="D3V-AD-o0F" firstAttribute="leading" secondItem="DRE-fa-lNz" secondAttribute="trailing" constant="20" id="cF1-rd-Jpu"/>
                                         <constraint firstAttribute="bottom" secondItem="D3V-AD-o0F" secondAttribute="bottom" constant="10" id="ff5-yV-qzL"/>
                                         <constraint firstItem="DRE-fa-lNz" firstAttribute="top" secondItem="XXB-ve-T2U" secondAttribute="top" constant="10" id="gLo-Zt-zKp"/>
@@ -399,6 +400,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="EOi-fe-wHk" id="rcb-aV-Xlk"/>
+                        <outlet property="table" destination="Yd0-Fq-j9y" id="MRm-Gu-oec"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cw-fv-8U7" userLabel="First Responder" sceneMemberID="firstResponder"/>
