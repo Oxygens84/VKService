@@ -23,6 +23,7 @@ class FriendInfoViewController: UICollectionViewController {
             }
         }
         collectionView?.reloadData()
+        
     }
 
     override func viewDidLoad() {
@@ -38,7 +39,11 @@ class FriendInfoViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellNames.friendInfoCell.rawValue, for: indexPath) as! FriendInfoViewCell
         cell.friendPhoto.image = UIImage(named: friend!.getFriendAvatar())
         cell.likeFriendPhoto.text = String(friend!.getAvatarLikes())
+        
+        heartBeatingAnimation(cell.heart, scale: 1.4)
         return cell
     }
-
+    
 }
+
+

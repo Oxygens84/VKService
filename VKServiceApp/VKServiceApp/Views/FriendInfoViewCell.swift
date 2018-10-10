@@ -12,5 +12,5 @@ class FriendInfoViewCell: UICollectionViewCell {
 
     @IBOutlet weak var friendPhoto: UIImageView!
     @IBOutlet weak var likeFriendPhoto: UILabel!
-
+    @IBOutlet weak var heart: UIView!
 }

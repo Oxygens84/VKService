@@ -13,6 +13,9 @@ class MyNewsViewCell: UITableViewCell {
     @IBOutlet weak var newsTitle: UILabel!
     @IBOutlet weak var newsImage: UIImageView!
     
+    @IBOutlet weak var heart: UIView!
+    @IBOutlet weak var message: UIView!
+    
     @IBOutlet weak var newsLikes: UILabel!
     @IBOutlet weak var newsComments: UILabel!
     

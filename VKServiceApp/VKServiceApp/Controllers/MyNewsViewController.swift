@@ -9,8 +9,7 @@
 import UIKit
 
 class MyNewsViewController: UITableViewController {
-
-    
+   
     @IBOutlet weak var table: UITableView!
     
     var myNews: [News] = [
@@ -66,20 +65,31 @@ class MyNewsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsCell.rawValue, for: indexPath) as! MyNewsViewCell
         let news = myNews[indexPath.row]
+     
+        cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        cell.newsImage.isUserInteractionEnabled = true
+        cell.newsImage.tag = indexPath.row
+        
         cell.newsTitle.text = news.getTitle()
         cell.newsImage.image = UIImage(named: news.getImage())
         cell.newsLikes.text = String(news.getLikesCount())
         cell.newsComments.text = String(news.getCommentsCount())
         cell.newsViews.text = String(news.getViewsCount())
+        heartBeatingAnimation(cell.heart, scale: 1.4)
         return cell
-    }
-    
+    }    
     
     func updateViewsCount(){
         for news in myNews {
             let count = news.getViewsCount() + 1
             news.setViews(total: count)
         }
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
+        let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
+        heartBeatingAnimation(cell.newsImage, scale: 0.4)
     }
     
 }

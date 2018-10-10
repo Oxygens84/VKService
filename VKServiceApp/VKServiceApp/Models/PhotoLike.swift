@@ -55,6 +55,7 @@ enum Flag: Int {
             print(optionSelected)
             let button = UIButton.init(type: .system)
             button.setImage(#imageLiteral(resourceName: "LikeButton").withRenderingMode(.alwaysTemplate), for: .normal)
+            button.imageView?.contentMode = .scaleAspectFill
             if isLiked {
                 button.tintColor = UIColor.red
             } else {
@@ -93,4 +94,32 @@ enum Flag: Int {
         guard let option = Flag(rawValue: index) else { return }
         self.flag = option
     }
+
+}
+
+
+extension UIViewController {
+    
+    func heartBeatingAnimation(_ sender: UIView, scale: CGFloat){
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.curveEaseOut],
+            animations: {
+                sender.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }, completion: { _ in
+                UIView.animate(
+                    withDuration: 0.5,
+                    delay: 0,
+                    usingSpringWithDamping: 1,
+                    initialSpringVelocity: 0.1,
+                    options: [.curveEaseIn],
+                    animations: {
+                        sender.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                )
+            }
+        )
+    }
+    
 }

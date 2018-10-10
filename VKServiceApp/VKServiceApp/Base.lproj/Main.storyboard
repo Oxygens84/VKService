@@ -468,6 +468,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="friendPhoto" destination="XI9-k5-06l" id="q5K-7s-60t"/>
+                                    <outlet property="heart" destination="KoM-0N-Ixg" id="7WC-x3-dws"/>
                                     <outlet property="likeFriendPhoto" destination="VML-ig-hBj" id="6i1-5f-Xbl"/>
                                 </connections>
                             </collectionViewCell>
@@ -627,6 +628,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="heart" destination="CXO-kn-Cff" id="ICS-iV-LEl"/>
+                                    <outlet property="message" destination="tqI-VO-CeG" id="D8X-U6-fxj"/>
                                     <outlet property="newsComments" destination="BbP-zG-lor" id="V5K-bT-ifJ"/>
                                     <outlet property="newsImage" destination="T6y-oM-L4e" id="nFs-Sz-c6n"/>
                                     <outlet property="newsLikes" destination="dKd-td-cho" id="0Ge-DK-kUa"/>
