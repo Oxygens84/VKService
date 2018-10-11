@@ -26,6 +26,7 @@
 		51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */; };
 		51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D8321568CBF003A0BBC /* Dictionaries.swift */; };
 		51CC9D8A215C1390003A0BBC /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D89215C1390003A0BBC /* Friend.swift */; };
+		51D06A7A216ED0F600C8265C /* GifLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D06A79216ED0F600C8265C /* GifLoader.swift */; };
 		51DC9FBA216A80CE00E2DDE5 /* MyNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */; };
 		51DC9FBC216A811A00E2DDE5 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBB216A811A00E2DDE5 /* News.swift */; };
 		51DC9FBE216A82E600E2DDE5 /* MyNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */; };
@@ -54,6 +55,7 @@
 		51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewController.swift; sourceTree = "<group>"; };
 		51CC9D8321568CBF003A0BBC /* Dictionaries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
 		51CC9D89215C1390003A0BBC /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		51D06A79216ED0F600C8265C /* GifLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifLoader.swift; sourceTree = "<group>"; };
 		51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewController.swift; sourceTree = "<group>"; };
 		51DC9FBB216A811A00E2DDE5 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewCell.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				51CC9D5F2152CDC0003A0BBC /* AppDelegate.swift */,
+				51D06A79216ED0F600C8265C /* GifLoader.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51D06A7A216ED0F600C8265C /* GifLoader.swift in Sources */,
 				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
 				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
 				51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */,

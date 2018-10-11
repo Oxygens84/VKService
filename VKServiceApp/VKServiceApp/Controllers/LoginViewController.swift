@@ -20,12 +20,20 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var loginPageScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
-    @IBOutlet weak var serviceTitle: UITextField!
+    
+    let loadingView = UIView()
+    let spinner = UIActivityIndicatorView()
+    var gifImage = UIImageView()
+    let loadingLabel = UILabel()
     
     @IBAction func loginButton(_ sender: Any) {
         let login = userNameField.text!
         let password = userPasswordField.text!
         if checkLoginAndPassword(userLogin: login, userPassword: password){
+            //---------------------//
+            //self.setLoadingScreen()
+            self.setGifLoadingScreen()
+            //---------------------//
             performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         } else {
             performAlert(message: Messages.loginFailed.rawValue)
@@ -39,6 +47,7 @@ class LoginViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addHideKeyboardGesture()
         userPasswordField.isSecureTextEntry = true
         
@@ -46,7 +55,9 @@ class LoginViewController : UIViewController {
             userNameField.text = adminForTest[0]
             userPasswordField.text = adminForTest[1]
         }
+        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,12 +65,15 @@ class LoginViewController : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        //------------------------//
+        sleep(5)
+        //self.removeLoadingScreen()
+        self.removeGifLoadingScreen()
+        //------------------------//
         super.viewWillDisappear(animated)
         unsubscribeFromNotification()
+
     }
-    
-    
-    
     
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
         if userLogin == adminForTest[0] && userPassword == adminForTest[1] {
@@ -133,5 +147,70 @@ class LoginViewController : UIViewController {
             object: nil)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    private func setLoadingScreen() {
+        
+        loadingView.frame = UIScreen.main.bounds
+        loadingView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        loadingView.isUserInteractionEnabled = false
+        
+        let width: CGFloat = 80
+        let height: CGFloat = 30
+        let x: CGFloat = (view.frame.width / 2) - (width / 2)
+        let y: CGFloat = (view.frame.height / 2) - (height / 2)
+        
+        loadingLabel.textColor = .white
+        loadingLabel.textAlignment = .center
+        loadingLabel.text = "Loading..."
+        loadingLabel.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.frame = CGRect(x: x - height - 10, y: y, width: height, height: height)
+        spinner.startAnimating()
+        
+        loadingView.addSubview(spinner)
+        loadingView.addSubview(loadingLabel)
+        
+        view.addSubview(loadingView)
+        
+    }
+    
+    private func setGifLoadingScreen() {
+        
+        loadingView.frame = UIScreen.main.bounds
+        loadingView.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        loadingView.isUserInteractionEnabled = false
+        
+        let width: CGFloat = view.frame.width
+        let height: CGFloat = 100
+        let x: CGFloat = (view.frame.width / 2) - (width / 2)
+        let y: CGFloat = (view.frame.height / 2) - (height / 2)
+        
+        gifImage = UIImageView(frame: CGRect(x: x, y: y, width: width, height: height))
+        gifImage.contentMode = .scaleAspectFit
+        gifImage.center = loadingView.center
+        gifImage.isUserInteractionEnabled = false
+        //gifImage.loadGif(asset: "JumpingDots")
+        gifImage.loadGif(asset: "DotsChain")
+        //gifImage.loadGif(asset: "Dots")
+        
+        loadingView.addSubview(gifImage)
+        loadingView.bringSubview(toFront: gifImage)
+        view.addSubview(loadingView)
+        
+        
+    }
+    
+    private func removeLoadingScreen() {
+        spinner.stopAnimating()
+        loadingView.removeFromSuperview()
+    }
+    
+    private func removeGifLoadingScreen() {
+        gifImage.removeFromSuperview()
+        loadingView.removeFromSuperview()
+    }
+
 }
+
 
