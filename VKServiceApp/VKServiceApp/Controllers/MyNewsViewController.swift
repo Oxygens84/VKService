@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyNewsViewController: UITableViewController {
+class MyNewsViewController: UITableViewController{
    
     @IBOutlet weak var table: UITableView!
     
@@ -49,11 +49,11 @@ class MyNewsViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        table.rowHeight = UITableViewAutomaticDimension
-        table.estimatedRowHeight = UITableViewAutomaticDimension
-        
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = UITableView.automaticDimension
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         updateViewsCount()
     }
@@ -76,6 +76,7 @@ class MyNewsViewController: UITableViewController {
         cell.newsComments.text = String(news.getCommentsCount())
         cell.newsViews.text = String(news.getViewsCount())
         heartBeatingAnimation(cell.heart, scale: 1.4)
+        
         return cell
     }    
     
@@ -90,6 +91,7 @@ class MyNewsViewController: UITableViewController {
         let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
         heartBeatingAnimation(cell.newsImage, scale: 0.4)
+        
     }
     
 }

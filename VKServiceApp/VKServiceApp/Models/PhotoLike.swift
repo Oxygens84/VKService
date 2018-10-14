@@ -122,4 +122,15 @@ extension UIViewController {
         )
     }
     
+    func scaleAnimation(_ sender: UIView, scale: CGFloat){
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            options: [.curveEaseOut],
+            animations: {
+                sender.transform = CGAffineTransform(scaleX: scale, y: scale)
+            }
+        )
+    }
+    
 }

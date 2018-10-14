@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "DotsChain.gif",
+      "filename" : "Party1.jpeg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "DotsChain-1.gif",
+      "filename" : "Party1-1.jpeg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "DotsChain-2.gif",
+      "filename" : "Party1-2.jpeg",
       "scale" : "3x"
     }
   ],

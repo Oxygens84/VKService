@@ -36,8 +36,8 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         filteredList = friendsInfoSorted
         addSearch()
-        table.rowHeight = UITableViewAutomaticDimension
-        table.estimatedRowHeight = UITableViewAutomaticDimension
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = UITableView.automaticDimension
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +76,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
             print(isHidden)
             return 0.0
         }
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

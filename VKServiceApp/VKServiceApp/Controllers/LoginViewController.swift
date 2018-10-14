@@ -66,7 +66,7 @@ class LoginViewController : UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         //------------------------//
-        sleep(5)
+        sleep(1)
         //self.removeLoadingScreen()
         self.removeGifLoadingScreen()
         //------------------------//
@@ -110,8 +110,8 @@ class LoginViewController : UIViewController {
     
     @objc func keyboardWasShown(notification: Notification){
         let info = notification.userInfo! as NSDictionary
-        let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 8.0, 0.0)
+        let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: kbSize.height + 8.0, right: 0.0)
         self.loginPageScrollView?.contentInset = contentInsets
         loginPageScrollView.scrollIndicatorInsets = contentInsets
     }
@@ -126,12 +126,12 @@ class LoginViewController : UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWasShown),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.keyboardWillBeHidden(notification: )),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -139,11 +139,11 @@ class LoginViewController : UIViewController {
     func unsubscribeFromNotification(){
         NotificationCenter.default.removeObserver(
             self,
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.removeObserver(
             self,
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -164,7 +164,7 @@ class LoginViewController : UIViewController {
         loadingLabel.text = "Loading..."
         loadingLabel.frame = CGRect(x: x, y: y, width: width, height: height)
         
-        spinner.activityIndicatorViewStyle = .whiteLarge
+        spinner.style = .whiteLarge
         spinner.frame = CGRect(x: x - height - 10, y: y, width: height, height: height)
         spinner.startAnimating()
         
@@ -195,7 +195,7 @@ class LoginViewController : UIViewController {
         //gifImage.loadGif(asset: "Dots")
         
         loadingView.addSubview(gifImage)
-        loadingView.bringSubview(toFront: gifImage)
+        loadingView.bringSubviewToFront(gifImage)
         view.addSubview(loadingView)
         
         
