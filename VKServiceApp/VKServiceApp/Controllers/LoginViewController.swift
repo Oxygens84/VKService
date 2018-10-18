@@ -75,6 +75,9 @@ class LoginViewController : UIViewController {
 
     }
     
+    
+
+    
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
         if userLogin == adminForTest[0] && userPassword == adminForTest[1] {
             return true
@@ -92,8 +95,8 @@ class LoginViewController : UIViewController {
     }
     
     func cleanFields(){
-        userNameField.text = ""
-        userPasswordField.text = ""
+        //userNameField.text = ""
+        //userPasswordField.text = ""
     }
     
     func addHideKeyboardGesture(){

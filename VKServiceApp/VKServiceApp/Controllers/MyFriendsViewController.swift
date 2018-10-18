@@ -8,9 +8,12 @@
 
 import UIKit
 
-class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
+class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINavigationControllerDelegate
+{
 
     @IBOutlet weak var table: UITableView!
+    
+    let interactiveTransition = CustomInteractiveTransition()
     
     var friendsInfoSorted: [Friend] = [
         Friend(id: 1, friend: "Winnie", avatar: "Winnie", avatarLikes: 1005),
@@ -38,6 +41,8 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
         addSearch()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
+        
+        self.navigationController?.delegate = self
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,6 +88,26 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate {
         let firstLetter = filteredList[section].getFriendName().prefix(1)
         return String(firstLetter)
     }
+    
+    
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              animationControllerFor operation: UINavigationController.Operation,
+                              from fromVC: UIViewController,
+                              to toVC: UIViewController)
+        -> UIViewControllerAnimatedTransitioning? {
+            if operation == .push {
+                self.interactiveTransition.viewController = toVC
+                return Animator()
+            } else if operation == .pop {
+                if navigationController.viewControllers.first != toVC {
+                    self.interactiveTransition.viewController = toVC
+                }
+                return AnimatorBack()
+            }
+            return nil
+    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileVC = segue.destination as? FriendInfoViewController {

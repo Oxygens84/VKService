@@ -69,6 +69,10 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return UIScreen.main.bounds.size
+    }
+    
     @objc func didSwipeLeft(sender: UIGestureRecognizer) {
         if currentImage == imageNames.count - 1 {
             currentImage = 0
@@ -135,6 +139,7 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
         }
     }
 
+    
     
 }
 

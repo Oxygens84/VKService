@@ -10,6 +10,9 @@
 		51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6C216161B800D59E46 /* ImageBuilder.swift */; };
 		51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6E21617E1800D59E46 /* ViewBuilder.swift */; };
 		51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A7021618D8400D59E46 /* PhotoLike.swift */; };
+		5142F3C42176758700817FFD /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C32176758700817FFD /* Animator.swift */; };
+		5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */; };
+		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
 		517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */; };
 		517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */; };
 		517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */; };
@@ -37,6 +40,9 @@
 		51175A6C216161B800D59E46 /* ImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBuilder.swift; sourceTree = "<group>"; };
 		51175A6E21617E1800D59E46 /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		51175A7021618D8400D59E46 /* PhotoLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLike.swift; sourceTree = "<group>"; };
+		5142F3C32176758700817FFD /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
+		5142F3CB2178649600817FFD /* AnimatorBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorBack.swift; sourceTree = "<group>"; };
 		517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewCell.swift; sourceTree = "<group>"; };
 		517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
@@ -149,6 +155,9 @@
 			children = (
 				51CC9D5F2152CDC0003A0BBC /* AppDelegate.swift */,
 				51D06A79216ED0F600C8265C /* GifLoader.swift */,
+				5142F3C32176758700817FFD /* Animator.swift */,
+				5142F3CB2178649600817FFD /* AnimatorBack.swift */,
+				5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -226,6 +235,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */,
+				5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */,
 				51D06A7A216ED0F600C8265C /* GifLoader.swift in Sources */,
 				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
 				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
@@ -246,6 +257,7 @@
 				51CC9D602152CDC0003A0BBC /* AppDelegate.swift in Sources */,
 				51CC9D8A215C1390003A0BBC /* Friend.swift in Sources */,
 				51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */,
+				5142F3C42176758700817FFD /* Animator.swift in Sources */,
 				517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
