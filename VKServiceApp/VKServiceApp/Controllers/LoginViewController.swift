@@ -66,7 +66,7 @@ class LoginViewController : UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         //------------------------//
-        sleep(1)
+        sleep(2)
         //self.removeLoadingScreen()
         self.removeGifLoadingScreen()
         //------------------------//
@@ -80,6 +80,10 @@ class LoginViewController : UIViewController {
     
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
         if userLogin == adminForTest[0] && userPassword == adminForTest[1] {
+            //------------------------
+            Session.shared.userId = 10
+            Session.shared.token = "token"
+            //------------------------
             return true
         }
         return false

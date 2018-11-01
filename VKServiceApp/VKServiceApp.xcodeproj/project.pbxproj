@@ -13,6 +13,7 @@
 		5142F3C42176758700817FFD /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C32176758700817FFD /* Animator.swift */; };
 		5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */; };
 		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
+		51616FCB218BAC3B004DD340 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCA218BAC3B004DD340 /* Session.swift */; };
 		517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */; };
 		517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */; };
 		517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */; };
@@ -43,6 +44,7 @@
 		5142F3C32176758700817FFD /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		5142F3CB2178649600817FFD /* AnimatorBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorBack.swift; sourceTree = "<group>"; };
+		51616FCA218BAC3B004DD340 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewCell.swift; sourceTree = "<group>"; };
 		517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				5142F3C32176758700817FFD /* Animator.swift */,
 				5142F3CB2178649600817FFD /* AnimatorBack.swift */,
 				5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */,
+				51616FCA218BAC3B004DD340 /* Session.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */,
 				517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */,
 				51DC9FBA216A80CE00E2DDE5 /* MyNewsViewController.swift in Sources */,
+				51616FCB218BAC3B004DD340 /* Session.swift in Sources */,
 				51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */,
 				51DC9FBE216A82E600E2DDE5 /* MyNewsViewCell.swift in Sources */,
 				517EDB1F215C327A0072DA41 /* Group.swift in Sources */,

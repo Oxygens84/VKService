@@ -29,10 +29,12 @@ class MyNewsViewController: UITableViewController{
                         myNews[indexPath].setMyLike(value: false)
                         myNews[indexPath].setImageLikes(total: myNews[indexPath].getLikesCount() - 1)
                     }
+                     cell.newsLikes.text = String(myNews[indexPath].getLikesCount())
                 }
             }
         }
-        tableView.reloadData()
+        //tableView.reloadData()
+       
     }
     
     @IBAction func addedComments(_ sender: PhotoComment) {
@@ -42,9 +44,10 @@ class MyNewsViewController: UITableViewController{
                     myNews[indexPath].setImageComments(total: myNews[indexPath].getCommentsCount() + 1)
                     myNews[indexPath].addComment(text: "one more comment " + String(describing: NSDate()))
                 }
+                 cell.newsComments.text = String(myNews[indexPath].getCommentsCount())
             }
         }
-        tableView.reloadData()
+        //tableView.reloadData()
     }
         
     override func viewDidLoad() {

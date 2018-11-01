@@ -35,6 +35,10 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     var valueSentFromSecondViewController:[String]?
     
     override func viewDidLoad() {
+        //--------------------------
+        print(Session.shared.userId)
+        print(Session.shared.token)
+        //--------------------------
         sections = getSections()
         super.viewDidLoad()
         filteredList = friendsInfoSorted
