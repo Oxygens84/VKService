@@ -93,9 +93,7 @@ class MyNewsViewController: UITableViewController{
     @objc func handleTap(sender: UITapGestureRecognizer) {
         let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
-        heartBeatingAnimation(cell.newsImage, scale: 0.4)
-        
+        heartBeatingAnimation(cell.newsImage, scale: 0.4)        
     }
     
 }
-

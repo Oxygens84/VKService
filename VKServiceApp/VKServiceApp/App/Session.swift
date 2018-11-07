@@ -10,8 +10,8 @@ import Foundation
 
 class Session {
     
-    var token: String = ""
-    var userId: Int = -1
+    var token: String?
+    var userId: Int?
     
     private init(){}
     

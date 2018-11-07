@@ -20,6 +20,8 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     var currentImage: Int = 0
     var imageNames: [String] = []
     
+    let vkService = VkService()
+    
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if sender.flag == Flag.like && friend != nil{
             if !friend!.getMyAvatarLike() {
@@ -31,13 +33,17 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
             }
         }
         collectionView?.reloadData()
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = friend!.getFriendName()
         setImages()
+        
+        if let user = Session.shared.userId {
+            //vkService.loadUserPhotos(userId: friend!.id)
+            vkService.loadUserPhotos(userId: user)
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -46,7 +52,7 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenSize: CGRect = UIScreen.main.bounds
-        return CGSize(width: screenSize.width, height: screenSize.height)
+        return CGSize(width: screenSize.width-100, height: screenSize.height-100)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,8 +145,7 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
         }
     }
 
-    
-    
+
 }
 
 

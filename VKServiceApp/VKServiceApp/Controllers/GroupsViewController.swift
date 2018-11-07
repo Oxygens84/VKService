@@ -10,6 +10,8 @@ import UIKit
 
 class GroupsViewController: UITableViewController, UISearchBarDelegate  {
 
+    let vkService = VkService()
+    
     var groups: [Group] = [
         Group(id: 1, group: "Winnie Fans", avatar: "Winnie", members: 1),
         Group(id: 2, group: "Eeyore Fans", avatar: "Eeyore", members: 2),
@@ -30,6 +32,8 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
         super.viewDidLoad()
         filteredList = groups
         addSearch()
+        
+        vkService.loadGroupsBy(searchText: "swift")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

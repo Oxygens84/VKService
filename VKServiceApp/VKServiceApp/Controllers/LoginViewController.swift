@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import WebKit
 
 class LoginViewController : UIViewController {
     
@@ -20,20 +20,23 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var loginPageScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userPasswordField: UITextField!
+    @IBOutlet weak var webview: WKWebView! {
+        didSet{
+            webview.navigationDelegate = self
+        }
+    }
     
     let loadingView = UIView()
     let spinner = UIActivityIndicatorView()
-    var gifImage = UIImageView()
     let loadingLabel = UILabel()
+    var gifImage = UIImageView()
     
     @IBAction func loginButton(_ sender: Any) {
         let login = userNameField.text!
         let password = userPasswordField.text!
         if checkLoginAndPassword(userLogin: login, userPassword: password){
-            //---------------------//
             //self.setLoadingScreen()
             self.setGifLoadingScreen()
-            //---------------------//
             performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         } else {
             performAlert(message: Messages.loginFailed.rawValue)
@@ -42,20 +45,20 @@ class LoginViewController : UIViewController {
     
     @IBAction func logOut(_ segue: UIStoryboardSegue){
         cleanFields()
+        print(Session.shared.token ?? "token is nil")
+        //VkService.webViewLoadData(view: webview)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        VkService.webViewLoadData(view: webview)
         addHideKeyboardGesture()
-        userPasswordField.isSecureTextEntry = true
         
+        userPasswordField.isSecureTextEntry = true
         if testingMode {
             userNameField.text = adminForTest[0]
             userPasswordField.text = adminForTest[1]
         }
-        
     }
     
     
@@ -65,25 +68,15 @@ class LoginViewController : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //------------------------//
         sleep(2)
         //self.removeLoadingScreen()
         self.removeGifLoadingScreen()
-        //------------------------//
         super.viewWillDisappear(animated)
         unsubscribeFromNotification()
-
     }
-    
-    
-
     
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
         if userLogin == adminForTest[0] && userPassword == adminForTest[1] {
-            //------------------------
-            Session.shared.userId = 10
-            Session.shared.token = "token"
-            //------------------------
             return true
         }
         return false
@@ -99,8 +92,10 @@ class LoginViewController : UIViewController {
     }
     
     func cleanFields(){
-        //userNameField.text = ""
-        //userPasswordField.text = ""
+        userNameField.text = ""
+        userPasswordField.text = ""
+        Session.shared.token = nil
+        Session.shared.userId = nil
     }
     
     func addHideKeyboardGesture(){
@@ -203,9 +198,7 @@ class LoginViewController : UIViewController {
         
         loadingView.addSubview(gifImage)
         loadingView.bringSubviewToFront(gifImage)
-        view.addSubview(loadingView)
-        
-        
+        view.addSubview(loadingView)                
     }
     
     private func removeLoadingScreen() {
@@ -220,4 +213,36 @@ class LoginViewController : UIViewController {
 
 }
 
+
+extension LoginViewController : WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse:
+        WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void )
+    {
+        guard let url = navigationResponse.response.url,
+            url.path == "/blank.html",
+            let fragment = url.fragment
+            else {
+                decisionHandler(.allow)
+                return
+        }
+        let params = fragment
+            .components(separatedBy: "&")
+            .map{$0.components(separatedBy: "=")}
+            .reduce([String : String]()) {result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+        }
+        if let tokenValue = params["access_token"],
+           let user = params["user_id"]{
+                Session.shared.token = tokenValue
+                Session.shared.userId = Int(user)
+                performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
+        }
+        decisionHandler(.cancel)
+    }
+}
 

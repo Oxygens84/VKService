@@ -10,10 +10,17 @@ import UIKit
 
 class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINavigationControllerDelegate
 {
-
-    @IBOutlet weak var table: UITableView!
     
     let interactiveTransition = CustomInteractiveTransition()
+    let vkService = VkService()
+    let searchController = UISearchController()
+    var filteredList: [Friend] =  []
+    var searchText: String = ""
+    var sections: [String] = []
+    var valueSentFromSecondViewController:[String]?
+    
+    @IBOutlet weak var table: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var friendsInfoSorted: [Friend] = [
         Friend(id: 1, friend: "Winnie", avatar: "Winnie", avatarLikes: 1005),
@@ -21,32 +28,17 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
         Friend(id: 3, friend: "Piglet", avatar: "Piglet", avatarLikes: 3005),
         Friend(id: 4, friend: "Daddy", avatar: "Daddy", avatarLikes: 4005),
         Friend(id: 5, friend: "Win Unknown", avatar: "Unknown", avatarLikes: 5005)
-    ].sorted(by: { $0.friend < $1.friend })
-    
-    let searchController = UISearchController()
-    
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    var filteredList: [Friend] =  []
-    var searchText: String = ""
-    
-    var sections: [String] = []
-    
-    var valueSentFromSecondViewController:[String]?
+        ].sorted(by: { $0.friend < $1.friend })
     
     override func viewDidLoad() {
-        //--------------------------
-        print(Session.shared.userId)
-        print(Session.shared.token)
-        //--------------------------
         sections = getSections()
         super.viewDidLoad()
         filteredList = friendsInfoSorted
         addSearch()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
-        
         self.navigationController?.delegate = self
+        vkService.loadMyFriends()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +68,6 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
         } else {
             cell.isHidden = false
         }
-
         return cell
     }
     
@@ -92,8 +83,6 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
         let firstLetter = filteredList[section].getFriendName().prefix(1)
         return String(firstLetter)
     }
-    
-    
     
     func navigationController(_ navigationController: UINavigationController,
                               animationControllerFor operation: UINavigationController.Operation,
