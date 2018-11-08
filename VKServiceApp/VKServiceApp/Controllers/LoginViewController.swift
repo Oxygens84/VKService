@@ -45,12 +45,13 @@ class LoginViewController : UIViewController {
     
     @IBAction func logOut(_ segue: UIStoryboardSegue){
         cleanFields()
-        print(Session.shared.token ?? "token is nil")
-        //VkService.webViewLoadData(view: webview)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        deleteCookies()
         VkService.webViewLoadData(view: webview)
         addHideKeyboardGesture()
         
@@ -94,8 +95,6 @@ class LoginViewController : UIViewController {
     func cleanFields(){
         userNameField.text = ""
         userPasswordField.text = ""
-        Session.shared.token = nil
-        Session.shared.userId = nil
     }
     
     func addHideKeyboardGesture(){
@@ -243,6 +242,16 @@ extension LoginViewController : WKNavigationDelegate {
                 performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         }
         decisionHandler(.cancel)
+    }
+    
+    func deleteCookies() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: records) {
+                print("Deleted: " + records.description)
+                
+            }
+        }
     }
 }
 

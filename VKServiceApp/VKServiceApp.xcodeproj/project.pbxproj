@@ -105,6 +105,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		51616FD02194E482004DD340 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				51616FCC2192122A004DD340 /* VkService.swift */,
+				51616FCA218BAC3B004DD340 /* Session.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		51CC9D532152CDC0003A0BBC = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +135,7 @@
 		51CC9D5E2152CDC0003A0BBC /* VKServiceApp */ = {
 			isa = PBXGroup;
 			children = (
+				51616FD02194E482004DD340 /* Network */,
 				51CC9D742152D3F5003A0BBC /* App */,
 				51CC9D712152D39E003A0BBC /* Models */,
 				51CC9D722152D3A4003A0BBC /* Controllers */,
@@ -186,8 +196,6 @@
 				5142F3C32176758700817FFD /* Animator.swift */,
 				5142F3CB2178649600817FFD /* AnimatorBack.swift */,
 				5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */,
-				51616FCA218BAC3B004DD340 /* Session.swift */,
-				51616FCC2192122A004DD340 /* VkService.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
