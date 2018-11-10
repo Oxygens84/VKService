@@ -15,6 +15,9 @@
 		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
 		51616FCB218BAC3B004DD340 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCA218BAC3B004DD340 /* Session.swift */; };
 		51616FCD2192122A004DD340 /* VkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCC2192122A004DD340 /* VkService.swift */; };
+		51616FD221962125004DD340 /* FriendPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD121962125004DD340 /* FriendPhoto.swift */; };
+		51616FD4219623A9004DD340 /* FriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD3219623A9004DD340 /* FriendService.swift */; };
+		51616FD621962411004DD340 /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD521962411004DD340 /* GroupService.swift */; };
 		517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */; };
 		517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */; };
 		517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */; };
@@ -48,6 +51,9 @@
 		5142F3CB2178649600817FFD /* AnimatorBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorBack.swift; sourceTree = "<group>"; };
 		51616FCA218BAC3B004DD340 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		51616FCC2192122A004DD340 /* VkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkService.swift; sourceTree = "<group>"; };
+		51616FD121962125004DD340 /* FriendPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhoto.swift; sourceTree = "<group>"; };
+		51616FD3219623A9004DD340 /* FriendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendService.swift; sourceTree = "<group>"; };
+		51616FD521962411004DD340 /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
 		517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsViewCell.swift; sourceTree = "<group>"; };
 		517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendInfoViewCell.swift; sourceTree = "<group>"; };
 		517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
@@ -108,8 +114,10 @@
 		51616FD02194E482004DD340 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				51616FCC2192122A004DD340 /* VkService.swift */,
 				51616FCA218BAC3B004DD340 /* Session.swift */,
+				51616FCC2192122A004DD340 /* VkService.swift */,
+				51616FD3219623A9004DD340 /* FriendService.swift */,
+				51616FD521962411004DD340 /* GroupService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 			children = (
 				51CC9D8321568CBF003A0BBC /* Dictionaries.swift */,
 				51CC9D89215C1390003A0BBC /* Friend.swift */,
+				51616FD121962125004DD340 /* FriendPhoto.swift */,
 				517EDB1E215C327A0072DA41 /* Group.swift */,
 				51DC9FBB216A811A00E2DDE5 /* News.swift */,
 				51175A7021618D8400D59E46 /* PhotoLike.swift */,
@@ -166,10 +175,10 @@
 			children = (
 				51CC9D612152CDC0003A0BBC /* LoginViewController.swift */,
 				51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */,
-				51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */,
-				51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */,
 				51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */,
+				51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */,
 				51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */,
+				51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -280,10 +289,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-VKServiceApp/Pods-VKServiceApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -336,6 +349,8 @@
 				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
 				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
 				51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */,
+				51616FD621962411004DD340 /* GroupService.swift in Sources */,
+				51616FD221962125004DD340 /* FriendPhoto.swift in Sources */,
 				517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */,
 				51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */,
 				517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */,
@@ -356,6 +371,7 @@
 				5142F3C42176758700817FFD /* Animator.swift in Sources */,
 				51616FCD2192122A004DD340 /* VkService.swift in Sources */,
 				517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */,
+				51616FD4219623A9004DD340 /* FriendService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

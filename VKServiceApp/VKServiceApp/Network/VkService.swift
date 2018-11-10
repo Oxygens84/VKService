@@ -10,6 +10,10 @@ import Foundation
 import Alamofire
 import WebKit
 
+enum DefaultKey {
+    static let tokenField = "token"
+}
+
 class VkService {
     
     let baseUrl = "https://api.vk.com/method/"
@@ -21,64 +25,7 @@ class VkService {
         self.apiKey = Session.shared.token!
         self.user = Session.shared.userId!
     }
-    
-    func loadMyFriends(){
-        let method = "apps.getFriendsList?"
-        let parameters: Parameters = [
-            "extended": 1,
-            "access_token": apiKey,
-            "v": version
-        ]
-        let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{
-            response in print(response)
-        }
-    }
-    
-    func loadUserPhotos(userId: Int){
-        let method = "photos.getUserPhotos?"
-        let parameters: Parameters = [
-            "user_id": userId,
-            "access_token": apiKey,
-            "v": version
-        ]
-        let url = baseUrl + method
-        print(url)
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{
-            response in print(response)
-        }
-    }
-    
-    func loadMyGroups(){
-        let method = "groups.get?"
-        let parameters: Parameters = [
-            "user_id": user,
-            "fields": "members_count",
-            "extended": 1,
-            "access_token": apiKey,
-            "v": version
-        ]
-        let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{
-            response in print(response)
-        }
-    }
-    
-    func loadGroupsBy(searchText: String){
-        let method = "groups.search?"
-        let parameters: Parameters = [
-            "q": searchText,
-            "type": "group",
-            "count": 10,
-            "access_token": apiKey,
-            "v": version
-        ]
-        let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{
-            response in print(response)
-        }
-    }
-    
+
     
     static func webViewLoadData(view : WKWebView) {
         var urlComponents = URLComponents()
@@ -98,3 +45,4 @@ class VkService {
         view.load(request)
     }
 }
+

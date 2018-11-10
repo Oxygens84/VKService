@@ -10,11 +10,9 @@ import UIKit
 
 class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
 
-    let vkService = VkService()
+    let service = GroupService()
     
-    var myGroups: [Group] = [
-        Group(id: 2, group: "Eeyore Fans", avatar: "Eeyore", members: 2)
-    ]
+    var myGroups: [Group] = []
     
     let searchController = UISearchController()
     
@@ -55,9 +53,17 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        filteredList = myGroups
+        service.loadMyGroupDataWithAlamofire() { (myGroups, error) in
+            if let error = error {
+                print(error)
+            }
+            if let myGroups = myGroups {
+                self.myGroups = myGroups
+                self.filteredList = myGroups
+                self.tableView?.reloadData()
+            }
+        }
         addSearch()
-        vkService.loadMyGroups()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,10 +72,9 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myGroupCell.rawValue, for: indexPath) as! MyGroupsViewCell
-        
+
         let group = filteredList[indexPath.row]
-        cell.groupName.text = group.getGroupName()
-        cell.groupAvatar.image = UIImage(named: group.getGroupAvatar())
+        cell.configure(group: group)
         return cell
     }
     

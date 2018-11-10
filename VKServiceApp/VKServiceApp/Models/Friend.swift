@@ -24,6 +24,33 @@ class Friend {
         self.myAvatarLike = false
     }
     
+    
+    init(json: [String: Any]) {
+        if let id = json["id"] as? Int {
+            self.id = id
+        } else {
+            self.id = -1
+        }
+        friend = ""
+        if let friendName = json["first_name"] as? String {
+            self.friend += friendName
+        }
+        if let friendSurname = json["last_name"] as? String {
+            if friend.count > 1 {
+                self.friend += " "
+            }
+            self.friend += friendSurname
+        }
+        if let avatar = json["photo_50"] as? String {
+            self.avatar = avatar
+        } else {
+            self.avatar = Defaults.friendName.rawValue
+        }
+        //TODO: get Likes from VK
+        self.avatarLikes = 100
+        self.myAvatarLike = false
+    }
+    
     func getFriendId() -> Int{
         return id
     }

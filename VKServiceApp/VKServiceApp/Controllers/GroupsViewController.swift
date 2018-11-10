@@ -10,14 +10,9 @@ import UIKit
 
 class GroupsViewController: UITableViewController, UISearchBarDelegate  {
 
-    let vkService = VkService()
+    let service = GroupService()
     
-    var groups: [Group] = [
-        Group(id: 1, group: "Winnie Fans", avatar: "Winnie", members: 1),
-        Group(id: 2, group: "Eeyore Fans", avatar: "Eeyore", members: 2),
-        Group(id: 3, group: "Piglet Fans", avatar: "Piglet", members: 3)
-    ]
-    
+    var groups: [Group] = []
     var myGroups: [Group] = []
     
     let searchController = UISearchController()
@@ -26,14 +21,12 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     var filteredList: [Group] =  []
     var searchText: String = ""
+    let searchTextDefault: String = "Geek"
     
     override func viewDidLoad() {
-        removeMyGroups()
         super.viewDidLoad()
-        filteredList = groups
+        loadData(searchTextDefault)
         addSearch()
-        
-        vkService.loadGroupsBy(searchText: "swift")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,9 +36,7 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.allGroupCell.rawValue, for: indexPath) as! GroupsViewCell
         let group = filteredList[indexPath.row]
-        cell.groupName.text = group.getGroupName()
-        cell.groupAvatar.image = UIImage(named: group.getGroupAvatar())
-        cell.groupMembers.text = group.getGroupMembers()
+        cell.configure(group: group)
         return cell
     }
 
@@ -63,10 +54,26 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
     func addSearch(){
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.text = self.searchText
+    }
+    
+    func loadData(_ searchText: String) {
+        service.loadGroupDataWithAlamofire(searchText: searchText) { (groups, error) in
+            if let error = error {
+                print(error)
+            }
+            if let groups = groups {
+                self.groups = groups
+                self.removeMyGroups()
+                self.filteredList = groups
+                self.tableView?.reloadData()
+            }
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        loadData(searchText)
         filterList()
         tableView.reloadData()
     }

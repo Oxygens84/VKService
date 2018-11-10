@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GroupsViewCell: UITableViewCell {
 
@@ -14,4 +15,9 @@ class GroupsViewCell: UITableViewCell {
     @IBOutlet weak var groupAvatar: UIImageView!
     @IBOutlet weak var groupMembers: UILabel!
 
+    func configure(group: Group){
+        groupName.text = group.getGroupName()
+        groupMembers.text = "Members: " + String(group.members)
+        groupAvatar.kf.setImage(with: URL(string: group.getGroupAvatar()))
+    }
 }

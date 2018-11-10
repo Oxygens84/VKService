@@ -12,11 +12,11 @@ class MyNewsViewController: UITableViewController{
    
     @IBOutlet weak var table: UITableView!
     
+    //TODO: added loadData
     var myNews: [News] = [
         News(title: "Last news for Eeyore Fans", image: "Eeyore", likesCount: 100, commentsCount: 200, viewCounts: 300),
         News(title: "Old news for Eeyore Fans", image: "Eeyore", likesCount: 1000, commentsCount: 2000, viewCounts: 3000)
     ]
-
 
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if let cell = sender.superview?.superview as? MyNewsViewCell {
@@ -33,8 +33,6 @@ class MyNewsViewController: UITableViewController{
                 }
             }
         }
-        //tableView.reloadData()
-       
     }
     
     @IBAction func addedComments(_ sender: PhotoComment) {
@@ -47,14 +45,12 @@ class MyNewsViewController: UITableViewController{
                  cell.newsComments.text = String(myNews[indexPath].getCommentsCount())
             }
         }
-        //tableView.reloadData()
     }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
