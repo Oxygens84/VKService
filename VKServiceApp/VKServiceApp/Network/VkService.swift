@@ -33,7 +33,7 @@ class VkService {
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem (name: "client_id" , value: "6743912" ),
+            URLQueryItem (name: "client_id" , value: "6747758" ),
             URLQueryItem (name: "display" , value: "mobile" ),
             URLQueryItem (name: "redirect_uri" ,
                           value: "https://oauth.vk.com/blank.html" ),

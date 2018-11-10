@@ -134,6 +134,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
+        usedSection.removeAll()
         if searchText != "" {
             filteredList.removeAll()
             for element in friendsInfoSorted {
