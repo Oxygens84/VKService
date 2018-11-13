@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class LoginViewController : UIViewController {
     
@@ -51,8 +52,8 @@ class LoginViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        deleteCookies()
-        VkService.webViewLoadData(view: webview)
+        //deleteCookies()
+        DataService.webViewLoadData(view: webview)
         addHideKeyboardGesture()
         
         userPasswordField.isSecureTextEntry = true

@@ -7,76 +7,42 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RealmSwift
 
-class Friend {
+class Friend: Object {
     
-    var id: Int
-    var friend: String
-    var avatar: String
-    var avatarLikes: Int
-    var myAvatarLike: Bool
+    @objc dynamic var id: Int = -1
+    @objc dynamic var friend: String = ""
+    @objc dynamic var avatar: String = ""
+    @objc dynamic var avatarLikes: Int = 0
+    @objc dynamic var myAvatarLike: Bool = false
     
-    init(id: Int, friend: String, avatar: String, avatarLikes: Int){
-        self.id = id
-        self.friend = friend
-        self.avatar = avatar
-        self.avatarLikes = avatarLikes
-        self.myAvatarLike = false
+    override static func primaryKey() -> String {
+        return "id"
     }
     
+    override static func indexedProperties() -> [String] {
+        return ["id"]
+    }
     
-    init(json: [String: Any]) {
-        if let id = json["id"] as? Int {
-            self.id = id
-        } else {
-            self.id = -1
-        }
-        friend = ""
-        if let friendName = json["first_name"] as? String {
-            self.friend += friendName
-        }
-        if let friendSurname = json["last_name"] as? String {
-            if friend.count > 1 {
-                self.friend += " "
-            }
-            self.friend += friendSurname
-        }
-        if let avatar = json["photo_50"] as? String {
-            self.avatar = avatar
-        } else {
-            self.avatar = Defaults.friendName.rawValue
-        }
+    convenience init(json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.friend = json["first_name"].stringValue + " " + json["last_name"].stringValue
+        self.avatar = json["photo_50"].stringValue
         //TODO: get Likes from VK
         self.avatarLikes = 100
         self.myAvatarLike = false
     }
     
-    func getFriendId() -> Int{
-        return id
+    convenience init(id: Int, friend: String, avatar: String, avatarLikes: Int, myAvatarLike: Bool ) {
+        self.init()
+        self.id = id
+        self.friend = friend
+        self.avatar = avatar
+        self.avatarLikes = avatarLikes
+        self.myAvatarLike = myAvatarLike
     }
     
-    
-    func getFriendName() -> String{
-        return friend
-    }
-    
-    func getFriendAvatar() -> String{
-        return avatar
-    }
-    
-    func getAvatarLikes() -> Int{
-        return avatarLikes
-    }
-    
-    func setAvatarLikes(total: Int){
-        avatarLikes = total
-    }
-    
-    func getMyAvatarLike() -> Bool{
-        return myAvatarLike
-    }
-    
-    func setMyAvatarLike(_ value: Bool){
-        myAvatarLike = value
-    }
 }

@@ -7,44 +7,46 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINavigationControllerDelegate
 {
 
     let interactiveTransition = CustomInteractiveTransition()
     let service = FriendService()
-    let searchController = UISearchController()
+    
     var filteredList: [Friend] =  []
-    var searchText: String = ""
+    var friendsInfoSorted: [Friend] = []
+    
     var sections: [String] = []
     var usedSection: [String] = []
     var valueSentFromSecondViewController:[String]?
+    
+    let searchController = UISearchController()
+    var searchText: String = ""
+    var refresher: UIRefreshControl!
+    
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    var friendsInfoSorted: [Friend] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.loadFriendDataWithAlamofire() { (friends, error) in
-            if let error = error {
-                print(error)
-            }
-            if let friends = friends?.sorted(by: { $0.friend < $1.friend }) {
-                self.friendsInfoSorted = friends
-                self.filteredList = friends
-                self.tableView?.reloadData()
-            }
-        }
+        
+        //loadDataFromRealm()
+        loadDataFromVk()
+        
         addSearch()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
         self.navigationController?.delegate = self
+        addRefresher()
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //return getSections().count
         return filteredList.count
     }
 
@@ -63,13 +65,13 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
 
         let headerTitle = self.tableView(tableView, titleForHeaderInSection: indexPath.section)
         let elements = getElementsInSections(section: headerTitle!)
-        let friend = elements[indexPath.row]
-        cell.configure(friend: friend)
+        let element = elements[indexPath.row]
+        cell.configure(friend: element)
 
-        if !getFirstLetter(friend.getFriendName()).contains(headerTitle!) {
-            cell.isHidden = true
-        } else {
+        if getFirstLetter(element.friend).contains(headerTitle!) {
             cell.isHidden = false
+        } else {
+            cell.isHidden = true
         }
 
         return cell
@@ -84,7 +86,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let firstLetter = filteredList[section].getFriendName().prefix(1)
+        let firstLetter = filteredList[section].friend.prefix(1)
         return String(firstLetter)
     }
     
@@ -127,18 +129,83 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     }
 
 
+    func getFirstLetter(_ text: String) -> String{
+        return String(text.prefix(1))
+    }
+    
+    func getSections() -> [String]{
+        var uniqueChar: [String] = []
+        for element in filteredList {
+            if !uniqueChar.contains(getFirstLetter(element.friend)){
+                uniqueChar.append(getFirstLetter(element.friend))
+            }
+        }
+        return uniqueChar.sorted()
+    }
+
+    func getElementsInSections(section: String) -> [Friend]{
+        var res: [Friend] = []
+        for element in filteredList {
+            if getFirstLetter(element.friend).contains(section){
+                res.append(element)
+            }
+        }
+        return res
+    }
+
+
+}
+
+extension MyFriendsViewController {
+    
+    func loadDataFromVk(){
+        service.loadFriendDataWithAlamofire() { (friends, error) in
+            if let error = error {
+                print(error)
+            }
+            if let friends = friends?.sorted(by: { $0.friend < $1.friend }) {
+                self.friendsInfoSorted = friends
+                self.filteredList = friends
+                self.tableView?.reloadData()
+            }
+        }
+    }
+    
+    func loadDataFromRealm(){
+        let friends = service.loadFriendsFromRealm().sorted(by: { $0.friend < $1.friend })
+        self.friendsInfoSorted = friends
+        self.filteredList = friends
+        if self.filteredList.count == 0 {
+            loadDataFromVk()
+        }
+        self.tableView?.reloadData()
+    }
+}
+
+extension MyFriendsViewController {
+    
+
+    @objc func handlerRefresh(){
+        loadDataFromVk()
+        refresher.endRefreshing()
+    }
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadDataFromVk()
+    }
+    
     func addSearch(){
         searchBar.delegate = self
         searchBar.returnKeyType = UIReturnKeyType.done
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         usedSection.removeAll()
         if searchText != "" {
             filteredList.removeAll()
             for element in friendsInfoSorted {
-                if element.getFriendName().lowercased().contains(searchText.lowercased() ) {
+                if element.friend.lowercased().contains(searchText.lowercased() ) {
                     filteredList.append(element)
                 }
             }
@@ -148,28 +215,15 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
         tableView.reloadData()
     }
 
-
-    func getSections() -> [String]{
-        var uniqueChar: [String] = []
-        for element in filteredList {
-            if !uniqueChar.contains(getFirstLetter(element.getFriendName())){
-                uniqueChar.append(getFirstLetter(element.getFriendName()))
-            }
-        }
-        return uniqueChar.sorted()
+    
+    func addRefresher(){
+        refresher = UIRefreshControl()
+        tableView.addSubview(refresher)
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.tintColor = UIColor.purple
+        refresher.addTarget(self, action: #selector(handlerRefresh), for: .valueChanged)
     }
-
-    func getElementsInSections(section: String) -> [Friend]{
-        var res: [Friend] = []
-        for element in filteredList {
-            if getFirstLetter(element.getFriendName()).contains(section){
-                res.append(element)
-            }
-        }
-        return res
-    }
-
-    func getFirstLetter(_ text: String) -> String{
-        return String(text.prefix(1))
-    }
+    
 }
+
+

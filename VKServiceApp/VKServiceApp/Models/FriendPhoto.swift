@@ -7,16 +7,28 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RealmSwift
 
-class FriendPhoto{
+class FriendPhoto : Object {
     
-    var photo: String = ""
+    @objc dynamic var user_id: Int = 0
+    @objc dynamic var photo: String = ""
+    @objc dynamic var friend: Friend?
     
-    init(json: [String: Any]) {
-        //photo_75 photo_130
-        if let photo = json["photo_604"] as? String {
-            self.photo = photo
-        }
+    override static func indexedProperties() -> [String] {
+        return ["user_id"]
     }
+    
+    convenience init(json: JSON, friendInfo: Friend) {
+        self.init()
+        //self.id = UUID().uuidString
+        //photo_75 photo_130
+        self.photo = json["photo_604"].stringValue
+        self.user_id = json["owner_id"].intValue
+        self.friend = friendInfo
+    }
+    
+
     
 }

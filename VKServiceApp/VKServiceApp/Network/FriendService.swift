@@ -8,8 +8,9 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
-class FriendService: VkService {
+class FriendService: DataService {
     
     func loadFriendDataWithAlamofire(completion: (([Friend]?, Error?) -> Void)?) {
         let method = "apps.getFriendsList?"
@@ -20,46 +21,37 @@ class FriendService: VkService {
             "v": version
         ]
         let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseData{(response) in
-            if let data = response.value {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                
-                if let json = json as? [String: Any] ,
-                    let respJson = json["response"] as? [String: Any],
-                    let items = respJson["items"] as? [[String: Any]]
-                {
-                    let friends = items.map{ Friend(json: $0) }
-                    DispatchQueue.main.async {
-                        completion?(friends, nil)
-                    }
-                }
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
+            if let error = response.error {
+                completion?(nil, error)
                 return
+            }
+            if let value = response.data, let json = try? JSON(data: value){
+                let friends = json["response"]["items"].arrayValue.map{ Friend(json: $0) }
+                self.rewriteData(friends)
+                completion?(friends, nil)
             }
         }
     }
     
     
-    func loadPhotoDataWithAlamofire(userId: Int, completion: (([FriendPhoto]?, Error?) -> Void)?) {
+    func loadPhotoDataWithAlamofire(friend: Friend, completion: (([FriendPhoto]?, Error?) -> Void)?) {
         let method = "photos.getAll?"
         let parameters: Parameters = [
-            "owner_id": userId,
+            "owner_id": friend.id,
             "access_token": apiKey,
             "v": version
         ]
         let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseData{(response) in
-            if let data = response.value {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                if let json = json as? [String: Any] ,
-                    let respJson = json["response"] as? [String: Any],
-                    let items = respJson["items"] as? [[String: Any]]
-                {
-                    let friendPhotos = items.map{ FriendPhoto(json: $0) }
-                    DispatchQueue.main.async {
-                        completion?(friendPhotos, nil)
-                    }
-                }
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
+            if let error = response.error {
+                completion?(nil, error)
                 return
+            }
+            if let value = response.data, let json = try? JSON(data: value){
+                let friendPhotos = json["response"]["items"].arrayValue.map{ FriendPhoto(json: $0, friendInfo: friend)}
+                self.rewriteData(friendPhotos, user: friend.id)
+                completion?(friendPhotos, nil)
             }
         }
     }

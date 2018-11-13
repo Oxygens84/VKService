@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupsViewController: UITableViewController, UISearchBarDelegate  {
 
@@ -25,9 +26,11 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData(searchTextDefault)
+        loadDataFromVk(searchTextDefault)
         addSearch()
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredList.count
@@ -57,23 +60,31 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
         searchBar.text = self.searchText
     }
     
-    func loadData(_ searchText: String) {
+    func loadDataFromVk(_ searchText: String) {
         service.loadGroupDataWithAlamofire(searchText: searchText) { (groups, error) in
             if let error = error {
                 print(error)
             }
             if let groups = groups {
-                self.groups = groups
-                self.removeMyGroups()
+                self.groups = groups                
                 self.filteredList = groups
                 self.tableView?.reloadData()
             }
         }
     }
+
+    
+    func loadDataFromRealm(){
+        self.groups = service.loadGroupsFromRealm()
+        if self.groups.count == 0 {
+            loadDataFromVk(searchText)
+        }
+        self.tableView?.reloadData()
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
-        loadData(searchText)
+        loadDataFromVk(searchText)
         filterList()
         tableView.reloadData()
     }

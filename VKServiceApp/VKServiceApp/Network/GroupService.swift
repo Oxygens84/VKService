@@ -8,8 +8,9 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
-class GroupService: VkService {
+class GroupService: DataService {
     
     func loadGroupDataWithAlamofire(searchText: String, completion: (([Group]?, Error?) -> Void)?) {
         let method = "groups.search?"
@@ -22,20 +23,15 @@ class GroupService: VkService {
             "v": version
         ]
         let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseData{(response) in
-            if let data = response.value {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                
-                if let json = json as? [String: Any] ,
-                    let respJson = json["response"] as? [String: Any],
-                    let items = respJson["items"] as? [[String: Any]]
-                {
-                    let groups = items.map{ Group(json: $0) }
-                    DispatchQueue.main.async {
-                        completion?(groups, nil)
-                    }
-                }
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
+            if let error = response.error {
+                completion?(nil, error)
                 return
+            }
+            if let value = response.data, let json = try? JSON(data: value){
+                let groups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
+                self.rewriteData(groups)
+                completion?(groups, nil)
             }
         }
     }
@@ -50,20 +46,15 @@ class GroupService: VkService {
             "v": version
         ]
         let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseData{(response) in
-            if let data = response.value {
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                
-                if let json = json as? [String: Any] ,
-                    let respJson = json["response"] as? [String: Any],
-                    let items = respJson["items"] as? [[String: Any]]
-                {
-                    let groups = items.map{ Group(json: $0) }
-                    DispatchQueue.main.async {
-                        completion?(groups, nil)
-                    }
-                }
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
+            if let error = response.error {
+                completion?(nil, error)
                 return
+            }
+            if let value = response.data, let json = try? JSON(data: value){
+                let myGroups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
+                self.rewriteData(myGroups)
+                completion?(myGroups, nil)
             }
         }
     }

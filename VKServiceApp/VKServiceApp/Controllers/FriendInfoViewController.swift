@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 enum SwipesOptions{
     case left
@@ -22,12 +23,12 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if sender.flag == Flag.like && friend != nil{
-            if !friend!.getMyAvatarLike() {
-                friend!.setAvatarLikes(total: friend!.getAvatarLikes() + 1)
-                friend!.setMyAvatarLike(true)
-            } else if friend!.getAvatarLikes() > 0 {
-                friend!.setAvatarLikes(total: friend!.getAvatarLikes() - 1)
-                friend!.setMyAvatarLike(false)
+            if !friend!.myAvatarLike {
+                //friend!.avatarLikes = friend!.avatarLikes + 1
+                //friend!.myAvatarLike = true
+            } else if friend!.avatarLikes > 0 {
+                //friend!.avatarLikes = friend!.avatarLikes - 1
+                //friend!.myAvatarLike = false
             }
         }
         collectionView?.reloadData()
@@ -35,8 +36,13 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = friend!.getFriendName()
-        service.loadPhotoDataWithAlamofire(userId: friend!.id) { (photos, error) in
+        self.title = friend!.friend
+        loadDataFromRealm()
+        //loadDataFromVk()
+    }
+    
+    func loadDataFromVk(){
+        service.loadPhotoDataWithAlamofire(friend: friend!) { (photos, error) in
             if let error = error {
                 print(error)
             }
@@ -46,7 +52,23 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
             }
         }
     }
+    
+    func loadDataFromRealm(){
+        if let id = friend?.id {
+            self.imageNames = service.loadPhotosFromRealm(user: id)
+            if self.imageNames.count == 0 {
+                loadDataFromVk()
+            }
+            self.collectionView?.reloadData()
+        }
+        
+    }
 
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadDataFromVk()
+    }
+
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -62,7 +84,7 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
         
         if imageNames.count > 0 {
             cell.friendPhoto.tag = indexPath.row
-            cell.likeFriendPhoto.text = String(friend!.getAvatarLikes())
+            cell.likeFriendPhoto.text = String(friend!.avatarLikes)
             let photo = imageNames[currentImage]
             cell.configure(friendPhoto: photo)
             

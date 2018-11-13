@@ -7,34 +7,38 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RealmSwift
 
-class Group {
+class Group: Object {
     
-    var id: Int = -1
-    var group: String = ""
-    var avatar: String = ""
-    var members: Int = 0
+    @objc dynamic var id: Int = -1
+    @objc dynamic var group: String = ""
+    @objc dynamic var avatar: String = ""
+    @objc dynamic var members: Int = 0
     
-    init(id: Int, group: String, avatar: String, members: Int){
-        self.id = id
-        self.group = group
-        self.avatar = avatar
-        self.members = members
+    override static func primaryKey() -> String {
+        return "id"
     }
     
-    init(json: [String: Any]) {
-        if let id = json["id"] as? Int {
-            self.id = id
-        }
-        if let groupName = json["name"] as? String {
-            self.group = groupName
-        }
-        if let members = json["members_count"] as? Int {
-            self.members = members
-        }
-        if let avatar = json["photo_50"] as? String {
-            self.avatar = avatar
-        }
+    override static func indexedProperties() -> [String] {
+        return ["id"]
+    }
+        
+    convenience init(id: Int, name: String, members: Int, avatar: String){
+        self.init()
+        self.id = id
+        self.group = name
+        self.members = members
+        self.avatar = avatar
+    }
+    
+    convenience init(json: JSON) {
+        self.init()
+        self.id = json["id"].intValue
+        self.group = json["name"].stringValue
+        self.members = json["members_count"].intValue
+        self.avatar = json["photo_50"].stringValue
     }
     
     func getGroupId() -> Int{

@@ -14,7 +14,7 @@
 		5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */; };
 		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
 		51616FCB218BAC3B004DD340 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCA218BAC3B004DD340 /* Session.swift */; };
-		51616FCD2192122A004DD340 /* VkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCC2192122A004DD340 /* VkService.swift */; };
+		51616FCD2192122A004DD340 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FCC2192122A004DD340 /* DataService.swift */; };
 		51616FD221962125004DD340 /* FriendPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD121962125004DD340 /* FriendPhoto.swift */; };
 		51616FD4219623A9004DD340 /* FriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD3219623A9004DD340 /* FriendService.swift */; };
 		51616FD621962411004DD340 /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD521962411004DD340 /* GroupService.swift */; };
@@ -50,7 +50,7 @@
 		5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		5142F3CB2178649600817FFD /* AnimatorBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorBack.swift; sourceTree = "<group>"; };
 		51616FCA218BAC3B004DD340 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		51616FCC2192122A004DD340 /* VkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkService.swift; sourceTree = "<group>"; };
+		51616FCC2192122A004DD340 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		51616FD121962125004DD340 /* FriendPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhoto.swift; sourceTree = "<group>"; };
 		51616FD3219623A9004DD340 /* FriendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendService.swift; sourceTree = "<group>"; };
 		51616FD521962411004DD340 /* GroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupService.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				51616FCA218BAC3B004DD340 /* Session.swift */,
-				51616FCC2192122A004DD340 /* VkService.swift */,
+				51616FCC2192122A004DD340 /* DataService.swift */,
 				51616FD3219623A9004DD340 /* FriendService.swift */,
 				51616FD521962411004DD340 /* GroupService.swift */,
 			);
@@ -290,12 +290,18 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-VKServiceApp/Pods-VKServiceApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,7 +375,7 @@
 				51CC9D8A215C1390003A0BBC /* Friend.swift in Sources */,
 				51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */,
 				5142F3C42176758700817FFD /* Animator.swift in Sources */,
-				51616FCD2192122A004DD340 /* VkService.swift in Sources */,
+				51616FCD2192122A004DD340 /* DataService.swift in Sources */,
 				517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */,
 				51616FD4219623A9004DD340 /* FriendService.swift in Sources */,
 			);
