@@ -46,13 +46,13 @@ class LoginViewController : UIViewController {
     
     @IBAction func logOut(_ segue: UIStoryboardSegue){
         cleanFields()
+        deleteCookies()
     }
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //deleteCookies()
         DataService.webViewLoadData(view: webview)
         addHideKeyboardGesture()
         
@@ -226,6 +226,10 @@ extension LoginViewController : WKNavigationDelegate {
                 decisionHandler(.allow)
                 return
         }
+        
+        //self.setLoadingScreen()
+        self.setGifLoadingScreen()
+        
         let params = fragment
             .components(separatedBy: "&")
             .map{$0.components(separatedBy: "=")}
@@ -243,6 +247,7 @@ extension LoginViewController : WKNavigationDelegate {
                 performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         }
         decisionHandler(.cancel)
+        
     }
     
     func deleteCookies() {

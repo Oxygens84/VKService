@@ -30,7 +30,6 @@ class GroupService: DataService {
             }
             if let value = response.data, let json = try? JSON(data: value){
                 let groups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
-                self.rewriteData(groups)
                 completion?(groups, nil)
             }
         }

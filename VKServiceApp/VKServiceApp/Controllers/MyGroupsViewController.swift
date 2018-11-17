@@ -47,7 +47,9 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
             if let index: Int = indexPath.row {
                 for i in (0..<myGroups.count).reversed() {
                     if filteredList[index].getGroupId() == myGroups[i].getGroupId() {
-                        myGroups.remove(at: i)
+                       service.deleteData(myGroups[i])
+                       myGroups.remove(at: i)
+                       break
                     }
                 }
             }
@@ -121,8 +123,9 @@ extension MyGroupsViewController {
         if let index: Int = tableView.indexPath(for: cell)?.row {
             for i in (0..<myGroups.count).reversed() {
                 if filteredList[index].getGroupId() == myGroups[i].getGroupId() {
-                    service.deleteData(myGroups[index])
+                    service.deleteData(myGroups[i])
                     myGroups.remove(at: i)
+                    break                    
                 }
             }
             filterList()
