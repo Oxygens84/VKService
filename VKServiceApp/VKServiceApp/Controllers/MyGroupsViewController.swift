@@ -17,6 +17,9 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     let searchController = UISearchController()
     
+    let realm = try! Realm()
+    var notifiactionToken: NotificationToken?
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     var filteredList: [Group] =  []
@@ -25,9 +28,8 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         addSearch()
-        //loadDataFromRealm()
-        loadDataFromVk()
         addRefresher()
+        observeMyGroups()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,18 +79,40 @@ extension MyGroupsViewController {
             }
             if let myGroups = myGroups {
                 self.myGroups = myGroups
-                self.filteredList = myGroups
-                self.tableView?.reloadData()
+                self.filteredList = myGroups                
             }
         }
+        self.tableView?.reloadData()
     }
     
     func loadDataFromRealm(){
-        self.myGroups = service.loadGroupsFromRealm()
+        var groups = service.loadGroupsFromRealm()
+        self.myGroups = groups
+        self.filteredList = groups
         if self.myGroups.count == 0 {
             loadDataFromVk()
         }
         self.tableView?.reloadData()
+    }
+    
+    func observeMyGroups(){
+        let data = realm.objects(Group.self)
+        print(data)
+        notifiactionToken = data.observe { (changes) in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                self.loadDataFromRealm()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(results)
+                print(deletions)
+                print(insertions)
+                print(modifications)
+                self.loadDataFromRealm()
+            case .error(let error):
+                print(error)
+            }
+        }
     }
     
     @IBAction func addGroup(segue: UIStoryboardSegue){
@@ -168,7 +192,7 @@ extension MyGroupsViewController {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
         filterList()
-        tableView.reloadData()
+        self.tableView?.reloadData()
     }
     
     @IBAction func refreshButtonTapped(_ sender: Any) {

@@ -30,8 +30,6 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
         addSearch()
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredList.count
     }
@@ -59,6 +57,11 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
         searchBar.returnKeyType = UIReturnKeyType.done
         searchBar.text = self.searchText
     }
+
+}
+
+
+extension GroupsViewController {
     
     func loadDataFromVk(_ searchText: String) {
         service.loadGroupDataWithAlamofire(searchText: searchText) { (groups, error) in
@@ -66,21 +69,17 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
                 print(error)
             }
             if let groups = groups {
-                self.groups = groups                
+                self.groups = groups
                 self.filteredList = groups
                 self.tableView?.reloadData()
             }
         }
     }
-
     
-    func loadDataFromRealm(){
-        self.groups = service.loadGroupsFromRealm()
-        if self.groups.count == 0 {
-            loadDataFromVk(searchText)
-        }
-        self.tableView?.reloadData()
-    }
+}
+
+
+extension GroupsViewController {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
@@ -101,5 +100,4 @@ class GroupsViewController: UITableViewController, UISearchBarDelegate  {
             filteredList = groups
         }
     }
-
 }

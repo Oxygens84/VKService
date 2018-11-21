@@ -96,11 +96,11 @@ class DataService {
         }
     }
     
-    func rewriteData(_ data: [Group], owner: String){
+    func rewriteData(_ data: [Group]){
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldElements = realm.objects(Group.self).filter("owner == %@", owner)
+            let oldElements = realm.objects(Group.self)
             realm.delete(oldElements)
             realm.add(data)
             try realm.commitWrite()

@@ -26,6 +26,8 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     var searchText: String = ""
     var refresher: UIRefreshControl!
     
+    let realm = try! Realm()
+    var notifiactionToken: NotificationToken?
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -34,15 +36,13 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //loadDataFromRealm()
-        loadDataFromVk()
-        
         addSearch()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
         self.navigationController?.delegate = self
         addRefresher()
         
+        observeFriends()        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
 
@@ -159,19 +159,21 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
 extension MyFriendsViewController {
     
     func loadDataFromVk(){
+        usedSection.removeAll()
         service.loadFriendDataWithAlamofire() { (friends, error) in
             if let error = error {
                 print(error)
             }
             if let friends = friends?.sorted(by: { $0.friend < $1.friend }) {
                 self.friendsInfoSorted = friends
-                self.filteredList = friends
-                self.tableView?.reloadData()
+                self.filteredList = friends                
             }
         }
+        self.tableView?.reloadData()
     }
     
     func loadDataFromRealm(){
+        usedSection.removeAll()
         let friends = service.loadFriendsFromRealm().sorted(by: { $0.friend < $1.friend })
         self.friendsInfoSorted = friends
         self.filteredList = friends
@@ -179,6 +181,26 @@ extension MyFriendsViewController {
             loadDataFromVk()
         }
         self.tableView?.reloadData()
+    }
+    
+    func observeFriends(){
+        let data = realm.objects(Friend.self)
+        print(data)
+        notifiactionToken = data.observe { (changes) in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                self.loadDataFromRealm()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(results)
+                print(deletions)
+                print(insertions)
+                print(modifications)
+                self.loadDataFromRealm()
+            case .error(let error):
+                print(error)
+            }
+        }
     }
 }
 
@@ -212,7 +234,7 @@ extension MyFriendsViewController {
         } else {
             filteredList = friendsInfoSorted
         }
-        tableView.reloadData()
+        self.tableView?.reloadData()
     }
 
     

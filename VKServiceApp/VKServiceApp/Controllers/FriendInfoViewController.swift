@@ -21,6 +21,9 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     var currentImage: Int = 0
     let service = FriendService()
     
+    let realm = try! Realm()
+    var notifiactionToken: NotificationToken?
+    
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if sender.flag == Flag.like && friend != nil{
             if !friend!.myAvatarLike {
@@ -37,37 +40,8 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = friend!.friend
-        loadDataFromRealm()
-        //loadDataFromVk()
+        observeFriendPhotos()
     }
-    
-    func loadDataFromVk(){
-        service.loadPhotoDataWithAlamofire(friend: friend!) { (photos, error) in
-            if let error = error {
-                print(error)
-            }
-            if let photos = photos {
-                self.imageNames = photos
-                self.collectionView?.reloadData()
-            }
-        }
-    }
-    
-    func loadDataFromRealm(){
-        if let id = friend?.id {
-            self.imageNames = service.loadPhotosFromRealm(user: id)
-            if self.imageNames.count == 0 {
-                loadDataFromVk()
-            }
-            self.collectionView?.reloadData()
-        }
-        
-    }
-
-    @IBAction func refreshButtonTapped(_ sender: Any) {
-        loadDataFromVk()
-    }
-
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -105,7 +79,59 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return UIScreen.main.bounds.size
     }
+
+}
+
+
+extension FriendInfoViewController {
     
+    func loadDataFromVk(){
+        service.loadPhotoDataWithAlamofire(friend: friend!) { (photos, error) in
+            if let error = error {
+                print(error)
+            }
+            if let photos = photos {
+                self.imageNames = photos
+                self.collectionView?.reloadData()
+            }
+        }
+    }
+    
+    func loadDataFromRealm(){
+        if let id = friend?.id {
+            self.imageNames = service.loadPhotosFromRealm(user: id)
+            if self.imageNames.count == 0 {
+                loadDataFromVk()
+            }
+            self.collectionView?.reloadData()
+        }
+        
+    }
+    
+    func observeFriendPhotos(){
+        let data = realm.objects(FriendPhoto.self)
+        print(data)
+        notifiactionToken = data.observe { (changes) in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                self.loadDataFromRealm()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(results)
+                print(deletions)
+                print(insertions)
+                print(modifications)
+                self.loadDataFromRealm()
+            case .error(let error):
+                print(error)
+            }
+        }
+    }
+    
+}
+
+extension FriendInfoViewController {
+
     @objc func didSwipeLeft(sender: UIGestureRecognizer) {
         if currentImage == imageNames.count - 1 {
             currentImage = 0
@@ -152,11 +178,17 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
                                     UIView.addKeyframe(withRelativeStartTime: 0,
                                                        relativeDuration: 1,
                                                        animations: {
-                                                       sender.center.x += move
+                                                        sender.center.x += move
                                     })
                                     sender.transform = CGAffineTransform(scaleX: 1, y: 1)
-                                },
+        },
                                 completion: nil)
     }
+    
+    
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadDataFromVk()
+    }
 
+    
 }

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Controllers/LoginViewController.swift"
-            timestampString = "564141283.1138721"
+            timestampString = "564451096.470906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Network/DataService.swift"
-            timestampString = "564141283.113984"
+            timestampString = "564452753.398126"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Models/Friend.swift"
-            timestampString = "564141283.1141109"
+            timestampString = "564452753.398385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Controllers/FriendInfoViewController.swift"
-            timestampString = "564141283.114175"
+            timestampString = "564452753.398648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "valueChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Controllers/MyGroupsViewController.swift"
-            timestampString = "564141283.114647"
+            timestampString = "564452753.398998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "addGroup(segue:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -86,16 +86,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Network/DataService.swift"
-            timestampString = "564141283.114711"
+            filePath = "VKServiceApp/Controllers/FriendInfoViewController.swift"
+            timestampString = "564452753.399846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "deleteData(_:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "valueChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
