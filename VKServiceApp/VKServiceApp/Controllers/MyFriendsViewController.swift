@@ -27,23 +27,29 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     var refresher: UIRefreshControl!
     
     let realm = try! Realm()
-    var notifiactionToken: NotificationToken?
+    var notificationToken: NotificationToken?
 
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        observeFriends()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addSearch()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
         self.navigationController?.delegate = self
         addRefresher()
-        
-        observeFriends()        
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationToken?.invalidate()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -186,7 +192,7 @@ extension MyFriendsViewController {
     func observeFriends(){
         let data = realm.objects(Friend.self)
         print(data)
-        notifiactionToken = data.observe { (changes) in
+        notificationToken = data.observe { (changes) in
             switch changes {
             case .initial(let results):
                 print(results)

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "FriendInfoViewController.valueChanged(_:):FriendInfoViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyFriendsViewController.handlerRefresh():MyFriendsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in FriendService.loadFriendDataWithAlamofire(completion:):FriendService.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MyFriendsViewController.loadDataFromVk():MyFriendsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyFriendsViewController.loadDataFromVk():MyFriendsViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "FriendService.loadFriendDataWithAlamofire(completion:):FriendService.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MyGroupsViewController.loadDataFromRealm():MyGroupsViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -22,7 +22,7 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     let service = FriendService()
     
     let realm = try! Realm()
-    var notifiactionToken: NotificationToken?
+    var notificationToken: NotificationToken?
     
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if sender.flag == Flag.like && friend != nil{
@@ -37,10 +37,15 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
         collectionView?.reloadData()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.title = friend!.friend
         observeFriendPhotos()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationToken?.invalidate()
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,7 +116,7 @@ extension FriendInfoViewController {
     func observeFriendPhotos(){
         let data = realm.objects(FriendPhoto.self)
         print(data)
-        notifiactionToken = data.observe { (changes) in
+        notificationToken = data.observe { (changes) in
             switch changes {
             case .initial(let results):
                 print(results)

@@ -18,18 +18,27 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     let searchController = UISearchController()
     
     let realm = try! Realm()
-    var notifiactionToken: NotificationToken?
+    var notificationToken: NotificationToken?
     
     @IBOutlet weak var searchBar: UISearchBar!
     
     var filteredList: [Group] =  []
     var searchText: String = ""
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        observeMyGroups()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSearch()
         addRefresher()
-        observeMyGroups()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        notificationToken?.invalidate()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,7 +107,7 @@ extension MyGroupsViewController {
     func observeMyGroups(){
         let data = realm.objects(Group.self)
         print(data)
-        notifiactionToken = data.observe { (changes) in
+        notificationToken = data.observe { (changes) in
             switch changes {
             case .initial(let results):
                 print(results)

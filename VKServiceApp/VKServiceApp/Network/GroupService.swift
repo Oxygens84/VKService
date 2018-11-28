@@ -17,7 +17,6 @@ class GroupService: DataService {
         let parameters: Parameters = [
             "q": searchText,
             "type": "group",
-            "count": 20,
             "fields": "members_count",
             "access_token": apiKey,
             "v": version
@@ -39,7 +38,6 @@ class GroupService: DataService {
         let method = "groups.get?"
         let parameters: Parameters = [
             "extended": 1,
-            "count": 20,
             "fields": "members_count",
             "access_token": apiKey,
             "v": version
