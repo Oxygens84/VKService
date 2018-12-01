@@ -8,12 +8,18 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
+    
+    var users = [FirebaseUser]()
+    let ref = Database.database().reference(withPath: "users")
 
     let service = GroupService()
     var refresher: UIRefreshControl!
     var myGroups: [Group] = []
+    
+    var addedGroups: [Int] = []
     
     let searchController = UISearchController()
     
@@ -28,6 +34,16 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         observeMyGroups()
+        
+//        ref.observe(DataEventType.value) {snapshot in
+//            var users: [FirebaseUser] = []
+//            for child in snapshot.children {
+//                if let child = child as? DataSnapshot,
+//                    let user = FirebaseUser(snapShot: child) {
+//                    users.append(user)
+//                }
+//            }
+//        }
     }
     
     override func viewDidLoad() {
@@ -95,7 +111,7 @@ extension MyGroupsViewController {
     }
     
     func loadDataFromRealm(){
-        var groups = service.loadGroupsFromRealm()
+        let groups = service.loadGroupsFromRealm()
         self.myGroups = groups
         self.filteredList = groups
         if self.myGroups.count == 0 {
@@ -134,6 +150,7 @@ extension MyGroupsViewController {
             if !(isMyGroupsListContain(group: group)){
                 var element: [Group] = []
                 element.append(group)
+                addedGroups.append(group.getGroupId())
                 myGroups.append(element[0])
                 filterList()
                 service.saveData(element)

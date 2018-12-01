@@ -10,6 +10,9 @@ target 'VKServiceApp' do
    pod 'Kingfisher'
    pod 'RealmSwift'
    pod 'SwiftKeychainWrapper'
+   pod 'Firebase/Core'
+   pod 'Firebase/Database'
+   pod 'Firebase/Auth'
 
   # Pods for VKServiceApp
 

@@ -9,40 +9,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Controllers/LoginViewController.swift"
-            timestampString = "565074753.621684"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Network/DataService.swift"
-            timestampString = "565075923.921705"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "loadFriendsFromRealm()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Models/Friend.swift"
-            timestampString = "565075923.923231"
+            timestampString = "565076648.054482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -57,13 +25,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Controllers/MyGroupsViewController.swift"
-            timestampString = "565075923.923929"
+            filePath = "VKServiceApp/Controllers/MyFriendsViewController.swift"
+            timestampString = "565076648.055928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "addGroup(segue:)"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "loadDataFromVk()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Controllers/MyFriendsViewController.swift"
-            timestampString = "565075923.924842"
+            filePath = "VKServiceApp/Network/DataService.swift"
+            timestampString = "565343485.586668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "loadDataFromVk()"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "webViewLoadData(view:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

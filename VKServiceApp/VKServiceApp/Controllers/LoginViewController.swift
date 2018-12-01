@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 import RealmSwift
+import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController : UIViewController {
     
@@ -17,6 +19,9 @@ class LoginViewController : UIViewController {
     var adminForTest = ["admin","12345"]
     let testingMode: Bool = true
     //-----------------------------------
+    
+    var users = [FirebaseUser]()
+    let ref = Database.database().reference(withPath: "users")
 
     @IBOutlet weak var loginPageScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
@@ -31,6 +36,7 @@ class LoginViewController : UIViewController {
     let spinner = UIActivityIndicatorView()
     let loadingLabel = UILabel()
     var gifImage = UIImageView()
+    var handle: AuthStateDidChangeListenerHandle!
     
     @IBAction func loginButton(_ sender: Any) {
         let login = userNameField.text!
@@ -47,6 +53,13 @@ class LoginViewController : UIViewController {
     @IBAction func logOut(_ segue: UIStoryboardSegue){
         cleanFields()
         deleteCookies()
+        
+//        do {
+//          try Auth.auth().signOut()
+//            self.dismiss(animated: true, completion: nil)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
     }
     
     
@@ -67,6 +80,13 @@ class LoginViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToNotification()
+        
+//        handle = Auth.auth().addStateDidChangeListener{(auth, user) in
+//            if user != nil {
+//                self.performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
+//            }
+//        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,6 +95,8 @@ class LoginViewController : UIViewController {
         self.removeGifLoadingScreen()
         super.viewWillDisappear(animated)
         unsubscribeFromNotification()
+        
+//        Auth.auth().removeStateDidChangeListener(handle)
     }
     
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
@@ -244,7 +266,19 @@ extension LoginViewController : WKNavigationDelegate {
            let user = params["user_id"]{
                 Session.shared.token = tokenValue
                 Session.shared.userId = Int(user)
-                performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
+
+//            Auth.auth().signIn(withEmail: user, password: tokenValue) { (user, error) in
+//                completion(user != nil)
+//            }
+            
+//            if (Int(user) != nil){
+//                let userFB = FirebaseUser(userId: Int(user)!, groups: [])
+//                let userRef = self.ref.child(user)
+//                userRef.setValue(userFB.toAnyObject())
+//                users.append(userFB)
+//            }
+     
+            performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         }
         decisionHandler(.cancel)
         
@@ -259,5 +293,23 @@ extension LoginViewController : WKNavigationDelegate {
             }
         }
     }
+    
+    
+//    private func saveToFirestore(_ users: [FirebaseUser]) {
+//        let database = Firestore.firestore()
+//        let settings = database.settings
+//        settings.areTimestampsInSnapshotsEnabled = true
+//        database.settings = settings
+//
+//        let weathersToSend = weathers
+//            .map { $0.toFirestore() }
+//            .reduce([:]) { $0.merging($1) { (current, _) in current } }
+//
+//        database.collection("forecasts").document(self.cityname).setData(weathersToSend, merge: true) { error in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else { print("data saved")}
+//        }
+//    }
 }
 

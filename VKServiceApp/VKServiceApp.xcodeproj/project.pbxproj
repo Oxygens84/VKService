@@ -10,6 +10,8 @@
 		51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6C216161B800D59E46 /* ImageBuilder.swift */; };
 		51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6E21617E1800D59E46 /* ViewBuilder.swift */; };
 		51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A7021618D8400D59E46 /* PhotoLike.swift */; };
+		513DAAE421B261D5005CD012 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 513DAAE321B261D4005CD012 /* GoogleService-Info.plist */; };
+		513DAAE621B27986005CD012 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513DAAE521B27986005CD012 /* FirebaseUser.swift */; };
 		5142F3C42176758700817FFD /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C32176758700817FFD /* Animator.swift */; };
 		5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */; };
 		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
@@ -46,6 +48,8 @@
 		51175A6C216161B800D59E46 /* ImageBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageBuilder.swift; sourceTree = "<group>"; };
 		51175A6E21617E1800D59E46 /* ViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBuilder.swift; sourceTree = "<group>"; };
 		51175A7021618D8400D59E46 /* PhotoLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLike.swift; sourceTree = "<group>"; };
+		513DAAE321B261D4005CD012 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		513DAAE521B27986005CD012 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		5142F3C32176758700817FFD /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractiveTransition.swift; sourceTree = "<group>"; };
 		5142F3CB2178649600817FFD /* AnimatorBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorBack.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				51CC9D732152D3AB003A0BBC /* Views */,
 				51CC9D632152CDC0003A0BBC /* Main.storyboard */,
 				51CC9D682152CDC0003A0BBC /* LaunchScreen.storyboard */,
+				513DAAE321B261D4005CD012 /* GoogleService-Info.plist */,
 				51CC9D662152CDC0003A0BBC /* Assets.xcassets */,
 				51CC9D6B2152CDC0003A0BBC /* Info.plist */,
 			);
@@ -166,6 +171,7 @@
 				51DC9FBB216A811A00E2DDE5 /* News.swift */,
 				51175A7021618D8400D59E46 /* PhotoLike.swift */,
 				51DC9FBF216A9B5700E2DDE5 /* PhotoComment.swift */,
+				513DAAE521B27986005CD012 /* FirebaseUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51CC9D6A2152CDC0003A0BBC /* LaunchScreen.storyboard in Resources */,
+				513DAAE421B261D5005CD012 /* GoogleService-Info.plist in Resources */,
 				51CC9D672152CDC0003A0BBC /* Assets.xcassets in Resources */,
 				51CC9D652152CDC0003A0BBC /* Main.storyboard in Resources */,
 			);
@@ -289,20 +296,28 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-VKServiceApp/Pods-VKServiceApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -315,9 +330,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VKServiceApp/Pods-VKServiceApp-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -354,6 +372,7 @@
 				51D06A7A216ED0F600C8265C /* GifLoader.swift in Sources */,
 				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
 				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
+				513DAAE621B27986005CD012 /* FirebaseUser.swift in Sources */,
 				51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */,
 				51616FD621962411004DD340 /* GroupService.swift in Sources */,
 				51616FD221962125004DD340 /* FriendPhoto.swift in Sources */,
@@ -520,7 +539,7 @@
 				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = oxygens.VKServiceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.VKService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -535,7 +554,7 @@
 				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = oxygens.VKServiceApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.VKService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
