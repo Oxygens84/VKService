@@ -147,6 +147,7 @@
 		51CC9D5E2152CDC0003A0BBC /* VKServiceApp */ = {
 			isa = PBXGroup;
 			children = (
+				513DAAE321B261D4005CD012 /* GoogleService-Info.plist */,
 				51616FD02194E482004DD340 /* Network */,
 				51CC9D742152D3F5003A0BBC /* App */,
 				51CC9D712152D39E003A0BBC /* Models */,
@@ -154,7 +155,6 @@
 				51CC9D732152D3AB003A0BBC /* Views */,
 				51CC9D632152CDC0003A0BBC /* Main.storyboard */,
 				51CC9D682152CDC0003A0BBC /* LaunchScreen.storyboard */,
-				513DAAE321B261D4005CD012 /* GoogleService-Info.plist */,
 				51CC9D662152CDC0003A0BBC /* Assets.xcassets */,
 				51CC9D6B2152CDC0003A0BBC /* Info.plist */,
 			);
@@ -539,7 +539,7 @@
 				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.VKService;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.vkservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -554,7 +554,7 @@
 				CODE_SIGN_STYLE = Manual;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.VKService;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.vkservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

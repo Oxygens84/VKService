@@ -21,7 +21,7 @@ class LoginViewController : UIViewController {
     //-----------------------------------
     
     var users = [FirebaseUser]()
-    let ref = Database.database().reference(withPath: "users")
+    var ref: DatabaseReference!
 
     @IBOutlet weak var loginPageScrollView: UIScrollView!
     @IBOutlet weak var userNameField: UITextField!
@@ -54,12 +54,12 @@ class LoginViewController : UIViewController {
         cleanFields()
         deleteCookies()
         
-//        do {
-//          try Auth.auth().signOut()
-//            self.dismiss(animated: true, completion: nil)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
+        do {
+          try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     
@@ -74,6 +74,8 @@ class LoginViewController : UIViewController {
             userNameField.text = adminForTest[0]
             userPasswordField.text = adminForTest[1]
         }
+        
+        ref = Database.database().reference(withPath: "users")
     }
     
     
@@ -81,11 +83,11 @@ class LoginViewController : UIViewController {
         super.viewWillAppear(animated)
         subscribeToNotification()
         
-//        handle = Auth.auth().addStateDidChangeListener{(auth, user) in
-//            if user != nil {
-//                self.performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
-//            }
-//        }
+        handle = Auth.auth().addStateDidChangeListener{(auth, user) in
+            if user != nil {
+                self.performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
+            }
+        }
         
     }
     
@@ -96,7 +98,7 @@ class LoginViewController : UIViewController {
         super.viewWillDisappear(animated)
         unsubscribeFromNotification()
         
-//        Auth.auth().removeStateDidChangeListener(handle)
+        Auth.auth().removeStateDidChangeListener(handle)
     }
     
     func checkLoginAndPassword(userLogin: String, userPassword: String) -> Bool{
@@ -267,16 +269,16 @@ extension LoginViewController : WKNavigationDelegate {
                 Session.shared.token = tokenValue
                 Session.shared.userId = Int(user)
 
-//            Auth.auth().signIn(withEmail: user, password: tokenValue) { (user, error) in
-//                completion(user != nil)
-//            }
+            Auth.auth().signIn(withEmail: user, password: tokenValue) { (user, error) in
+               // completion(user != nil)
+            }
             
-//            if (Int(user) != nil){
-//                let userFB = FirebaseUser(userId: Int(user)!, groups: [])
-//                let userRef = self.ref.child(user)
-//                userRef.setValue(userFB.toAnyObject())
-//                users.append(userFB)
-//            }
+            if (Int(user) != nil){
+                let userFB = FirebaseUser(userId: Int(user)!, groups: [])
+                let userRef = self.ref.child(user)
+                userRef.setValue(userFB.toAnyObject())
+                users.append(userFB)
+            }
      
             performSegue(withIdentifier: SeguesId.goToDashboard.rawValue, sender: nil)
         }
