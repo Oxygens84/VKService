@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
 import WebKit
 import RealmSwift
 
@@ -21,6 +21,8 @@ class DataService {
     var apiKey: String
     var user: Int
     var version = 5.80
+    
+    var friends: [Friend]?
     
     init(){
         self.apiKey = Session.shared.token!
@@ -112,6 +114,7 @@ class DataService {
     func loadFriendsFromRealm() -> [Friend]{
         do {
             let realm = try Realm()
+            friends = Array(realm.objects(Friend.self))
             return Array(realm.objects(Friend.self))
         } catch {
             print(error)

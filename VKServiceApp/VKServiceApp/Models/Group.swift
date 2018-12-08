@@ -24,7 +24,7 @@ class Group: Object {
     override static func indexedProperties() -> [String] {
         return ["id"]
     }
-        
+    
     convenience init(id: Int, name: String, members: Int, avatar: String){
         self.init()
         self.id = id

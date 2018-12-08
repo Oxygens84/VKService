@@ -16,5 +16,5 @@ class Session {
     private init(){}
     
     public static let shared = Session()
-
+    
 }

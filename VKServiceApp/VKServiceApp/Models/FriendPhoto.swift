@@ -29,6 +29,6 @@ class FriendPhoto : Object {
         self.friend = friendInfo
     }
     
-
+    
     
 }

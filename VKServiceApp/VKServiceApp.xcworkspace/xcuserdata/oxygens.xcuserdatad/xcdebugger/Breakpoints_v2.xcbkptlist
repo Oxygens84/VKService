@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VKServiceApp/Models/Friend.swift"
-            timestampString = "565649722.2246929"
+            timestampString = "565972525.962664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -32,22 +32,6 @@
             startingLineNumber = "168"
             endingLineNumber = "168"
             landmarkName = "loadDataFromVk()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VKServiceApp/Network/DataService.swift"
-            timestampString = "565343485.586668"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "webViewLoadData(view:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
