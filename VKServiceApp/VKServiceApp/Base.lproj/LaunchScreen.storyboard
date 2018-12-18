@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,10 +24,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YpD-V2-bNJ" secondAttribute="trailing" id="TuE-IW-itp"/>
-                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="XxX-kv-oTM"/>
-                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fO8-3s-Xme"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YpD-V2-bNJ" secondAttribute="bottom" id="kN8-cE-8pt"/>
+                            <constraint firstAttribute="trailing" secondItem="YpD-V2-bNJ" secondAttribute="trailing" id="TuE-IW-itp"/>
+                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="XxX-kv-oTM"/>
+                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fO8-3s-Xme"/>
+                            <constraint firstAttribute="bottom" secondItem="YpD-V2-bNJ" secondAttribute="bottom" id="kN8-cE-8pt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

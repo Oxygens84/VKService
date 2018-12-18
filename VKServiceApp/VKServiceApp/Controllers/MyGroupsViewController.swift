@@ -104,7 +104,7 @@ extension MyGroupsViewController {
             }
             if let myGroups = myGroups {
                 self.myGroups = myGroups
-                self.filteredList = myGroups                
+                self.filteredList = myGroups.sorted(by: { $0.group < $1.group })
             }
         }
         self.tableView?.reloadData()
@@ -113,7 +113,7 @@ extension MyGroupsViewController {
     func loadDataFromRealm(){
         let groups = service.loadGroupsFromRealm()
         self.myGroups = groups
-        self.filteredList = groups
+        self.filteredList = groups.sorted(by: { $0.group < $1.group })
         if self.myGroups.count == 0 {
             loadDataFromVk()
         }

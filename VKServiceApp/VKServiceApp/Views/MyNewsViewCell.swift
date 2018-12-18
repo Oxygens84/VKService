@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MyNewsViewCell: UITableViewCell {
     
     @IBOutlet weak var newsTitle: UILabel!
@@ -20,5 +21,5 @@ class MyNewsViewCell: UITableViewCell {
     @IBOutlet weak var newsComments: UILabel!
     
     @IBOutlet weak var newsViews: UILabel!
-        
+    
 }

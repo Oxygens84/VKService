@@ -7,16 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MyNewsViewController: UITableViewController{
-   
-    @IBOutlet weak var table: UITableView!
+  
+    let service = NewsService()
+    var myNews: [News] = []
     
-    //TODO: added loadData
-    var myNews: [News] = [
-        News(title: "Last news for Eeyore Fans", image: "Eeyore", likesCount: 100, commentsCount: 200, viewCounts: 300),
-        News(title: "Old news for Eeyore Fans", image: "Eeyore", likesCount: 1000, commentsCount: 2000, viewCounts: 3000)
-    ]
+    @IBOutlet weak var table: UITableView!
 
     @IBAction func valueChanged(_ sender: PhotoLike) {
         if let cell = sender.superview?.superview as? MyNewsViewCell {
@@ -49,6 +47,7 @@ class MyNewsViewController: UITableViewController{
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadDataFromVk()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
     }
@@ -69,8 +68,8 @@ class MyNewsViewController: UITableViewController{
         cell.newsImage.isUserInteractionEnabled = true
         cell.newsImage.tag = indexPath.row
         
-        cell.newsTitle.text = news.getTitle()
-        cell.newsImage.image = UIImage(named: news.getImage())
+        cell.newsTitle.text = service.getPostAuthor(user: news.ownerId) + " \n" + news.getTitle()
+        cell.newsImage.kf.setImage(with: URL(string: news.getImage()))        
         cell.newsLikes.text = String(news.getLikesCount())
         cell.newsComments.text = String(news.getCommentsCount())
         cell.newsViews.text = String(news.getViewsCount())
@@ -90,6 +89,33 @@ class MyNewsViewController: UITableViewController{
         let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
         heartBeatingAnimation(cell.newsImage, scale: 0.4)        
+    }
+    
+}
+
+
+extension MyNewsViewController {
+    
+    func loadDataFromVk() {
+        service.loadNewsDataWithAlamofire() { (news, error) in
+            if let error = error {
+                print(error)
+            }
+            if let news = news {
+                self.myNews = self.filterNewsWithoutPhoto(news)
+                self.tableView?.reloadData()
+            }
+        }
+    }
+    
+    func filterNewsWithoutPhoto(_ origin: [News]) -> [News]{
+        var res: [News] = []
+        for i in origin {
+            if i.getImage() != "" {
+                res.append(i)
+            }
+        }
+        return res
     }
     
 }

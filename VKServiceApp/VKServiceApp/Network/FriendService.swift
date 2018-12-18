@@ -16,6 +16,7 @@ class FriendService: DataService {
         let method = "apps.getFriendsList?"
         let parameters: Parameters = [
             "extended": 1,
+            "count": 5000,
             "fields": "photo_50",
             "access_token": apiKey,
             "v": version

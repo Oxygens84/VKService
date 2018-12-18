@@ -7,25 +7,51 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RealmSwift
 
 class News {
     
-    var title: String
-    var image: String
-    var comments: [String]
-    var myLike: Bool
-    var commentsCount: Int
-    var likesCount: Int
-    var viewsCount: Int
+    var title: String = ""
+    var image: String = ""
+    var comments: [String] = []
+    var myLike: Bool = false
+    var commentsCount: Int = 0
+    var likesCount: Int = 0
+    var viewsCount: Int = 0
+    var ownerId: Int = -1
     
-    init(title: String, image: String, likesCount: Int, commentsCount: Int, viewCounts: Int){
+    convenience init(json: JSON) {
+        self.init()
+        self.title = json["text"].stringValue
+        let maxPhoto = json["attachments"][0]["photo"]["sizes"].arrayValue.count
+        if maxPhoto > 0 {
+            self.image = json["attachments"][0]["photo"]["sizes"][maxPhoto-1]["url"].stringValue
+        }
+        //TODO comments
+        self.comments = []
+        if (json["likes"]["user_likes"].intValue == 0) {
+            self.myLike = false
+        } else {
+            self.myLike = true
+        }
+        self.likesCount = json["likes"]["count"].intValue
+        self.commentsCount = json["comments"]["count"].intValue
+        self.viewsCount = json["views"]["count"].intValue
+        self.ownerId = json["attachments"][0]["photo"]["owner_id"].intValue
+    }
+    
+    convenience init(title: String, image: String, comments: [String], myLike: Bool, commentsCount: Int, likesCount: Int, viewsCount: Int, ownerId: Int){
+        self.init()
         self.title = title
         self.image = image
+        //TODO comments
         self.comments = []
-        self.myLike = false
+        self.myLike = myLike
         self.likesCount = likesCount
         self.commentsCount = commentsCount
-        self.viewsCount = viewCounts
+        self.viewsCount = viewsCount
+        self.ownerId = ownerId
     }
     
     func getTitle() -> String{
@@ -78,5 +104,3 @@ class News {
     }
     
 }
-
-

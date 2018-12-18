@@ -20,7 +20,7 @@ class DataService {
     let baseUrl = "https://api.vk.com/method/"
     var apiKey: String
     var user: Int
-    var version = 5.80
+    var version: String = "5.92"
     
     var friends: [Friend]?
     
@@ -40,7 +40,7 @@ class DataService {
             URLQueryItem (name: "display" , value: "mobile" ),
             URLQueryItem (name: "redirect_uri" ,
                           value: "https://oauth.vk.com/blank.html" ),
-            URLQueryItem (name: "scope" , value: "262150" ),
+            URLQueryItem (name: "scope" , value: "270342" ),
             URLQueryItem (name: "response_type" , value: "token" ),
             URLQueryItem (name: "v" , value: "5.68" )
         ]
@@ -96,6 +96,26 @@ class DataService {
         } catch {
             print(error)
         }
+    }
+    
+    //TODO add getAuthorFromVk
+    func getPostAuthor(user: Int) -> String{
+        var name: String = ""
+        do {
+            let realm = try Realm()
+            if user >= 0 {
+                let element = realm.objects(Friend.self).filter("id == %@", user).first
+                //name = element?.friend ?? ("No user data " + String(user))
+                name = element?.friend ?? ""
+            } else {
+                let element = realm.objects(Group.self).filter("id == %@", abs(user)).first
+                //name = element?.group ?? ("No group data" + String(abs(user)))
+                name = element?.group ?? ""
+            }
+        } catch {
+            print(error)
+        }
+        return name
     }
     
     func rewriteData(_ data: [Group]){

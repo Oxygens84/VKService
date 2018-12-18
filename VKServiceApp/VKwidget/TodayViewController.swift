@@ -11,13 +11,14 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDelegate, UITableViewDataSource {
     
-    private let dataService = DataService()
+    //TODO add last news
     
-    var friends: [Friend]?
+    //private let dataService = DataService()
+    //var friends: [Friend]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        friends = dataService.friends
+        //friends = dataService.friends
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
     }
     
@@ -25,23 +26,24 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         if activeDisplayMode == .compact {
             self.preferredContentSize = maxSize
         } else {
-            let newHeight = CGFloat(friends!.count * 44 + 66)
+            //let newHeight = CGFloat(friends!.count * 44 + 66)
+            let newHeight = CGFloat(1 * 44 + 66)
             self.preferredContentSize = CGSize(width: maxSize.width, height: newHeight)
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends!.count
+        return 1//friends!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        if (friends?.count)! > 0 {
-            let friend = friends![indexPath.row]
-            cell.textLabel!.text = friend.friend
-        } else {
+//        if (friends?.count)! > 0 {
+//            let friend = friends![indexPath.row]
+//            cell.textLabel!.text = friend.friend
+//        } else {
             cell.textLabel!.text = "no data"
-        }
+//        }
         return cell
     }
         
