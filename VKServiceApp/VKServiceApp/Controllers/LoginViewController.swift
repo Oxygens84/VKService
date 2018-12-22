@@ -14,6 +14,9 @@ import FirebaseDatabase
 
 class LoginViewController : UIViewController {
     
+    //TODO: fix bug for VKcancel_login
+    //TODO: fix bug for logOut (blank form)
+    
     //-----------------------------------
     //for testing
     var adminForTest = ["admin","12345"]
@@ -92,7 +95,7 @@ class LoginViewController : UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        sleep(2)
+        //sleep(2)
         //self.removeLoadingScreen()
         self.removeGifLoadingScreen()
         super.viewWillDisappear(animated)
@@ -216,8 +219,8 @@ class LoginViewController : UIViewController {
         gifImage.contentMode = .scaleAspectFit
         gifImage.center = loadingView.center
         gifImage.isUserInteractionEnabled = false
-        //gifImage.loadGif(asset: "JumpingDots")
-        gifImage.loadGif(asset: "DotsChain")
+        gifImage.loadGif(asset: "JumpingDots")
+        //gifImage.loadGif(asset: "DotsChain")
         //gifImage.loadGif(asset: "Dots")
         
         loadingView.addSubview(gifImage)

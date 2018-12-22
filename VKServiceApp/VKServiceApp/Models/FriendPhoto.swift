@@ -23,15 +23,12 @@ class FriendPhoto : Object {
     convenience init(json: JSON, friendInfo: Friend) {
         self.init()
         //self.id = UUID().uuidString
-        //photo_75 photo_130
         //self.photo = json["photo_604"].stringValue
-        
+        //self.photo = json["sizes"][0]["url"].stringValue
         let maxPhoto = json["sizes"].arrayValue.count
         if maxPhoto > 0 {
             self.photo = json["sizes"][maxPhoto-1]["url"].stringValue
-        }
-        
-        self.photo = json["sizes"][0]["url"].stringValue
+        }        
         self.user_id = json["owner_id"].intValue
         self.friend = friendInfo
     }

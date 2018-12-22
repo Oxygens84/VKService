@@ -34,3 +34,8 @@ enum Titles: String {
 enum Defaults: String {
     case friendName = "Unknown"
 }
+
+enum NewsType: String {
+    case post = "post"
+    case photo = "photo"
+}

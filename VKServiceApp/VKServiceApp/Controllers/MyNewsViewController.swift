@@ -47,7 +47,11 @@ class MyNewsViewController: UITableViewController{
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadDataFromVk()
+        
+        DispatchQueue.global().sync {
+            loadDataFromVk()
+        }
+        
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
     }
@@ -97,7 +101,7 @@ class MyNewsViewController: UITableViewController{
 extension MyNewsViewController {
     
     func loadDataFromVk() {
-        service.loadNewsDataWithAlamofire() { (news, error) in
+        service.loadNewsPostWithAlamofire() { (news, error) in
             if let error = error {
                 print(error)
             }

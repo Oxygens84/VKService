@@ -12,11 +12,11 @@ import SwiftyJSON
 
 class NewsService: DataService {
     
-    func loadNewsDataWithAlamofire(completion: (([News]?, Error?) -> Void)?) {
+    func loadNewsPostWithAlamofire(completion: (([News]?, Error?) -> Void)?) {
         let method = "newsfeed.get"
         let parameters: Parameters = [
             "extended": 1,
-            "filters": "post",
+            "filters": NewsType.post,
             "access_token": apiKey,
             "v": version
         ]

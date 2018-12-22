@@ -647,7 +647,7 @@
                     <navigationItem key="navigationItem" title="News" id="SwY-wc-vdL">
                         <barButtonItem key="rightBarButtonItem" title="Log out" id="DXo-qb-mLF">
                             <connections>
-                                <segue destination="ja5-Kh-EO2" kind="unwind" unwindAction="logOut:" id="tvw-sj-qrI"/>
+                                <segue destination="ja5-Kh-EO2" kind="unwind" unwindAction="logOut:" id="OJ8-61-uuT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
