@@ -26,11 +26,14 @@ class NewsService: DataService {
                 completion?(nil, error)
                 return
             }
-            if let value = response.data, let json = try? JSON(data: value){
-                let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
-                completion?(news, nil)
+            DispatchQueue.global().async{
+                if let value = response.data, let json = try? JSON(data: value){
+                    let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
+                    DispatchQueue.main.async {
+                        completion?(news, nil)
+                    }
+                }
             }
         }
     }
-    
 }

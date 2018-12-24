@@ -22,7 +22,7 @@ class GroupService: DataService {
             "v": version
         ]
         let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
+        Alamofire.request(url, method: .get, parameters: parameters).responseJSON(queue: DispatchQueue.global()){(response) in
             if let error = response.error {
                 completion?(nil, error)
                 return
@@ -48,10 +48,14 @@ class GroupService: DataService {
                 completion?(nil, error)
                 return
             }
-            if let value = response.data, let json = try? JSON(data: value){
-                let myGroups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
-                self.rewriteData(myGroups)
-                completion?(myGroups, nil)
+            DispatchQueue.global().async{
+                if let value = response.data, let json = try? JSON(data: value){
+                    let myGroups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
+                    DispatchQueue.main.async{
+                        self.rewriteData(myGroups)
+                        completion?(myGroups, nil)
+                    }
+                }
             }
         }
     }

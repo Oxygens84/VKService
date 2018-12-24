@@ -14,6 +14,12 @@ class MyNewsViewController: UITableViewController{
     let service = NewsService()
     var myNews: [News] = []
     
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
+        let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
+        heartBeatingAnimation(cell.newsImage, scale: 0.4)
+    }
+    
     @IBOutlet weak var table: UITableView!
 
     @IBAction func valueChanged(_ sender: PhotoLike) {
@@ -46,12 +52,8 @@ class MyNewsViewController: UITableViewController{
     }
         
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        DispatchQueue.global().sync {
-            loadDataFromVk()
-        }
-        
+        super.viewDidLoad()        
+        loadDataFromVk()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
     }
@@ -80,46 +82,6 @@ class MyNewsViewController: UITableViewController{
         heartBeatingAnimation(cell.heart, scale: 1.4)
         
         return cell
-    }    
-    
-    func updateViewsCount(){
-        for news in myNews {
-            let count = news.getViewsCount() + 1
-            news.setViews(total: count)
-        }
-    }
-    
-    @objc func handleTap(sender: UITapGestureRecognizer) {
-        let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
-        let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
-        heartBeatingAnimation(cell.newsImage, scale: 0.4)        
-    }
-    
-}
-
-
-extension MyNewsViewController {
-    
-    func loadDataFromVk() {
-        service.loadNewsPostWithAlamofire() { (news, error) in
-            if let error = error {
-                print(error)
-            }
-            if let news = news {
-                self.myNews = self.filterNewsWithoutPhoto(news)
-                self.tableView?.reloadData()
-            }
-        }
-    }
-    
-    func filterNewsWithoutPhoto(_ origin: [News]) -> [News]{
-        var res: [News] = []
-        for i in origin {
-            if i.getImage() != "" {
-                res.append(i)
-            }
-        }
-        return res
     }
     
 }

@@ -36,6 +36,13 @@
 		517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */; };
 		517EDB1D215C2D250072DA41 /* MyGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517EDB1C215C2D250072DA41 /* MyGroupsViewCell.swift */; };
 		51C4B72321C834D600D6E412 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B72221C834D600D6E412 /* NewsService.swift */; };
+		51C4B72521D181CC00D6E412 /* MyNewsExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B72421D181CC00D6E412 /* MyNewsExtensionController.swift */; };
+		51C4B72721D182B900D6E412 /* MyGroupExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B72621D182B900D6E412 /* MyGroupExtensionController.swift */; };
+		51C4B72B21D184C500D6E412 /* GroupsExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B72A21D184C500D6E412 /* GroupsExtensionController.swift */; };
+		51C4B73121D1881B00D6E412 /* MyFriendsExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B73021D1881B00D6E412 /* MyFriendsExtensionController.swift */; };
+		51C4B73321D1890F00D6E412 /* FriendExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B73221D1890F00D6E412 /* FriendExtensionController.swift */; };
+		51C4B73521D1898A00D6E412 /* LoginWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B73421D1898A00D6E412 /* LoginWebViewController.swift */; };
+		51C4B73721D18AC300D6E412 /* LoginExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B73621D18AC300D6E412 /* LoginExtensionController.swift */; };
 		51CC9D602152CDC0003A0BBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D5F2152CDC0003A0BBC /* AppDelegate.swift */; };
 		51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D612152CDC0003A0BBC /* LoginViewController.swift */; };
 		51CC9D652152CDC0003A0BBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51CC9D632152CDC0003A0BBC /* Main.storyboard */; };
@@ -108,6 +115,13 @@
 		517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewCell.swift; sourceTree = "<group>"; };
 		517EDB1C215C2D250072DA41 /* MyGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsViewCell.swift; sourceTree = "<group>"; };
 		51C4B72221C834D600D6E412 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
+		51C4B72421D181CC00D6E412 /* MyNewsExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsExtensionController.swift; sourceTree = "<group>"; };
+		51C4B72621D182B900D6E412 /* MyGroupExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupExtensionController.swift; sourceTree = "<group>"; };
+		51C4B72A21D184C500D6E412 /* GroupsExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsExtensionController.swift; sourceTree = "<group>"; };
+		51C4B73021D1881B00D6E412 /* MyFriendsExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFriendsExtensionController.swift; sourceTree = "<group>"; };
+		51C4B73221D1890F00D6E412 /* FriendExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendExtensionController.swift; sourceTree = "<group>"; };
+		51C4B73421D1898A00D6E412 /* LoginWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewController.swift; sourceTree = "<group>"; };
+		51C4B73621D18AC300D6E412 /* LoginExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginExtensionController.swift; sourceTree = "<group>"; };
 		51CC9D5C2152CDC0003A0BBC /* VKServiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKServiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51CC9D5F2152CDC0003A0BBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51CC9D612152CDC0003A0BBC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +211,107 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		51C4B72C21D187AB00D6E412 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */,
+				51C4B72421D181CC00D6E412 /* MyNewsExtensionController.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		51C4B72D21D187B500D6E412 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */,
+				51C4B73021D1881B00D6E412 /* MyFriendsExtensionController.swift */,
+				51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */,
+				51C4B73221D1890F00D6E412 /* FriendExtensionController.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		51C4B72E21D187BB00D6E412 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */,
+				51C4B72621D182B900D6E412 /* MyGroupExtensionController.swift */,
+				51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */,
+				51C4B72A21D184C500D6E412 /* GroupsExtensionController.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		51C4B72F21D187C200D6E412 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				51CC9D612152CDC0003A0BBC /* LoginViewController.swift */,
+				51C4B73621D18AC300D6E412 /* LoginExtensionController.swift */,
+				51C4B73421D1898A00D6E412 /* LoginWebViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		51C4B73821D18E2100D6E412 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */,
+				517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		51C4B73921D18E2F00D6E412 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				517EDB1C215C2D250072DA41 /* MyGroupsViewCell.swift */,
+				517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		51C4B73A21D18E3700D6E412 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		51C4B73B21D18E6400D6E412 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				516B3E1021BC07EB004DF698 /* Friend.swift */,
+				516B3E1621BC09E6004DF698 /* FriendPhoto.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		51C4B73C21D18E6B00D6E412 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				516B3E1921BC0C35004DF698 /* Group.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		51C4B73D21D18E7300D6E412 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				51DC9FBB216A811A00E2DDE5 /* News.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		51C4B73E21D18E9500D6E412 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				51175A7021618D8400D59E46 /* PhotoLike.swift */,
+				51DC9FBF216A9B5700E2DDE5 /* PhotoComment.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		51CC9D532152CDC0003A0BBC = {
 			isa = PBXGroup;
 			children = (
@@ -238,13 +353,11 @@
 		51CC9D712152D39E003A0BBC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				51C4B73B21D18E6400D6E412 /* Friends */,
+				51C4B73C21D18E6B00D6E412 /* Groups */,
+				51C4B73D21D18E7300D6E412 /* News */,
+				51C4B73E21D18E9500D6E412 /* Photo */,
 				51CC9D8321568CBF003A0BBC /* Dictionaries.swift */,
-				516B3E1021BC07EB004DF698 /* Friend.swift */,
-				516B3E1621BC09E6004DF698 /* FriendPhoto.swift */,
-				516B3E1921BC0C35004DF698 /* Group.swift */,
-				51DC9FBB216A811A00E2DDE5 /* News.swift */,
-				51175A7021618D8400D59E46 /* PhotoLike.swift */,
-				51DC9FBF216A9B5700E2DDE5 /* PhotoComment.swift */,
 				513DAAE521B27986005CD012 /* FirebaseUser.swift */,
 			);
 			path = Models;
@@ -253,12 +366,10 @@
 		51CC9D722152D3A4003A0BBC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				51CC9D612152CDC0003A0BBC /* LoginViewController.swift */,
-				51CC9D7D21567938003A0BBC /* MyFriendsViewController.swift */,
-				51CC9D8121567A47003A0BBC /* FriendInfoViewController.swift */,
-				51CC9D7F21567989003A0BBC /* MyGroupsViewController.swift */,
-				51CC9D7B215678EC003A0BBC /* GroupsViewController.swift */,
-				51DC9FB9216A80CE00E2DDE5 /* MyNewsViewController.swift */,
+				51C4B72F21D187C200D6E412 /* Login */,
+				51C4B72D21D187B500D6E412 /* Friends */,
+				51C4B72E21D187BB00D6E412 /* Groups */,
+				51C4B72C21D187AB00D6E412 /* News */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,11 +377,9 @@
 		51CC9D732152D3AB003A0BBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				517EDB14215C18850072DA41 /* MyFriendsViewCell.swift */,
-				517EDB18215C21CC0072DA41 /* FriendInfoViewCell.swift */,
-				517EDB1A215C2CE50072DA41 /* GroupsViewCell.swift */,
-				517EDB1C215C2D250072DA41 /* MyGroupsViewCell.swift */,
-				51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */,
+				51C4B73821D18E2100D6E412 /* Friends */,
+				51C4B73921D18E2F00D6E412 /* Groups */,
+				51C4B73A21D18E3700D6E412 /* News */,
 				51175A6C216161B800D59E46 /* ImageBuilder.swift */,
 				51175A6E21617E1800D59E46 /* ViewBuilder.swift */,
 			);
@@ -540,16 +649,20 @@
 				5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */,
 				5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */,
 				51D06A7A216ED0F600C8265C /* GifLoader.swift in Sources */,
+				51C4B72721D182B900D6E412 /* MyGroupExtensionController.swift in Sources */,
 				51CC9D8021567989003A0BBC /* MyGroupsViewController.swift in Sources */,
 				51CC9D8221567A47003A0BBC /* FriendInfoViewController.swift in Sources */,
 				516B3E1721BC09E6004DF698 /* FriendPhoto.swift in Sources */,
+				51C4B73721D18AC300D6E412 /* LoginExtensionController.swift in Sources */,
 				513DAAE621B27986005CD012 /* FirebaseUser.swift in Sources */,
 				51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */,
 				513DAAFF21BBC013005CD012 /* DataService.swift in Sources */,
 				51616FD621962411004DD340 /* GroupService.swift in Sources */,
+				51C4B73121D1881B00D6E412 /* MyFriendsExtensionController.swift in Sources */,
 				517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */,
 				51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */,
 				517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */,
+				51C4B73321D1890F00D6E412 /* FriendExtensionController.swift in Sources */,
 				51DC9FBA216A80CE00E2DDE5 /* MyNewsViewController.swift in Sources */,
 				51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */,
 				51DC9FBE216A82E600E2DDE5 /* MyNewsViewCell.swift in Sources */,
@@ -559,14 +672,17 @@
 				51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */,
 				51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */,
 				51CC9D7C215678EC003A0BBC /* GroupsViewController.swift in Sources */,
+				51C4B72B21D184C500D6E412 /* GroupsExtensionController.swift in Sources */,
 				51DC9FBC216A811A00E2DDE5 /* News.swift in Sources */,
 				51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */,
+				51C4B73521D1898A00D6E412 /* LoginWebViewController.swift in Sources */,
 				51CC9D602152CDC0003A0BBC /* AppDelegate.swift in Sources */,
 				516B3E1121BC07EB004DF698 /* Friend.swift in Sources */,
 				51CC9D8421568CBF003A0BBC /* Dictionaries.swift in Sources */,
 				5142F3C42176758700817FFD /* Animator.swift in Sources */,
 				516B3E1A21BC0C35004DF698 /* Group.swift in Sources */,
 				517EDB15215C18850072DA41 /* MyFriendsViewCell.swift in Sources */,
+				51C4B72521D181CC00D6E412 /* MyNewsExtensionController.swift in Sources */,
 				51616FD4219623A9004DD340 /* FriendService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

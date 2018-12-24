@@ -31,7 +31,7 @@ class Friend: Object {
         self.id = json["id"].intValue
         self.friend = json["first_name"].stringValue + " " + json["last_name"].stringValue
         self.avatar = json["photo_50"].stringValue
-        //TODO: get Likes from VK
+        //TODO: get Likes from VK, move to FriendPhotoPage
         self.avatarLikes = 100
         self.myAvatarLike = false
     }

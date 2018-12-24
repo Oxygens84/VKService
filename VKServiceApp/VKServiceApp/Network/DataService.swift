@@ -7,7 +7,6 @@
 //
 
 import Foundation
-//import Alamofire
 import WebKit
 import RealmSwift
 
@@ -75,9 +74,6 @@ class DataService {
         do {
             let realm = try Realm()
             realm.beginWrite()
-            //let oldElements = realm.objects(Friend.self)
-            //realm.delete(oldElements)
-            //realm.add(data, update: true)
             realm.add(data, update: true)
             try realm.commitWrite()
         } catch {
@@ -105,11 +101,9 @@ class DataService {
             let realm = try Realm()
             if user >= 0 {
                 let element = realm.objects(Friend.self).filter("id == %@", user).first
-                //name = element?.friend ?? ("No user data " + String(user))
                 name = element?.friend ?? ""
             } else {
                 let element = realm.objects(Group.self).filter("id == %@", abs(user)).first
-                //name = element?.group ?? ("No group data" + String(abs(user)))
                 name = element?.group ?? ""
             }
         } catch {

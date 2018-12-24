@@ -17,6 +17,7 @@ class FriendService: DataService {
         let parameters: Parameters = [
             "extended": 1,
             "count": 5000,
+            //crop_photo
             "fields": "photo_50",
             "access_token": apiKey,
             "v": version
@@ -27,10 +28,14 @@ class FriendService: DataService {
                 completion?(nil, error)
                 return
             }
-            if let value = response.data, let json = try? JSON(data: value){
-                let friends = json["response"]["items"].arrayValue.map{ Friend(json: $0) }
-                self.rewriteData(friends)
-                completion?(friends, nil)
+            DispatchQueue.global().async{
+                if let value = response.data, let json = try? JSON(data: value){
+                    let friends = json["response"]["items"].arrayValue.map{ Friend(json: $0) }
+                    DispatchQueue.main.async {
+                        self.rewriteData(friends)                        
+                        completion?(friends, nil)
+                    }
+                }
             }
         }
     }
@@ -49,10 +54,14 @@ class FriendService: DataService {
                 completion?(nil, error)
                 return
             }
-            if let value = response.data, let json = try? JSON(data: value){
-                let friendPhotos = json["response"]["items"].arrayValue.map{ FriendPhoto(json: $0, friendInfo: friend)}
-                self.rewriteData(friendPhotos, user: friend.id)
-                completion?(friendPhotos, nil)
+            DispatchQueue.global().async{
+                if let value = response.data, let json = try? JSON(data: value){
+                    let friendPhotos = json["response"]["items"].arrayValue.map{ FriendPhoto(json: $0, friendInfo: friend)}
+                    DispatchQueue.main.async{
+                        self.rewriteData(friendPhotos, user: friend.id)
+                        completion?(friendPhotos, nil)
+                    }
+                }
             }
         }
     }
