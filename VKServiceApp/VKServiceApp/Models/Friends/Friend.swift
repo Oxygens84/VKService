@@ -12,6 +12,7 @@ import RealmSwift
 
 class Friend: Object {
     
+    //TO DO add user_id
     @objc dynamic var id: Int = -1
     @objc dynamic var friend: String = ""
     @objc dynamic var avatar: String = ""

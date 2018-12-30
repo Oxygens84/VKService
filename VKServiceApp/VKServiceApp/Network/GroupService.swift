@@ -17,6 +17,7 @@ class GroupService: DataService {
         let parameters: Parameters = [
             "q": searchText,
             "type": "group",
+            "count": 1000,
             "fields": "members_count",
             "access_token": apiKey,
             "v": version
@@ -29,7 +30,9 @@ class GroupService: DataService {
             }
             if let value = response.data, let json = try? JSON(data: value){
                 let groups = json["response"]["items"].arrayValue.map{ Group(json: $0) }
-                completion?(groups, nil)
+                DispatchQueue.main.async{
+                    completion?(groups, nil)
+                }
             }
         }
     }

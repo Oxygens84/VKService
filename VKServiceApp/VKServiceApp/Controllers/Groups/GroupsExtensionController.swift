@@ -19,9 +19,9 @@ extension GroupsViewController {
             if let groups = groups {
                 self.groups = groups
                 self.filteredList = groups
-                self.tableView?.reloadData()
             }
         }
+        self.tableView?.reloadData()
     }
     
     func removeMyGroups(){

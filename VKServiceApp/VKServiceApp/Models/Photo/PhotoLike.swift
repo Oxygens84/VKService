@@ -52,7 +52,6 @@ enum Flag: Int {
     
     private func setupView(){
         for optionSelected in Flag.allOptions {
-            print(optionSelected)
             let button = UIButton.init(type: .system)
             button.setImage(#imageLiteral(resourceName: "LikeButton").withRenderingMode(.alwaysTemplate), for: .normal)
             button.imageView?.contentMode = .scaleAspectFill

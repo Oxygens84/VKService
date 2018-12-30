@@ -24,7 +24,7 @@ extension FriendInfoViewController {
     
     func loadDataFromRealm(){
         if let id = friend?.id {
-            self.imageNames = service.loadPhotosFromRealm(user: id)
+            self.imageNames = service.loadFromRealm(user: id)
             if self.imageNames.count == 0 {
                 loadDataFromVk()
             }
@@ -41,11 +41,8 @@ extension FriendInfoViewController {
             case .initial(let results):
                 print(results)
                 self.loadDataFromRealm()
-            case .update(let results, let deletions, let insertions, let modifications):
+            case .update(let results):
                 print(results)
-                print(deletions)
-                print(insertions)
-                print(modifications)
                 self.loadDataFromRealm()
             case .error(let error):
                 print(error)

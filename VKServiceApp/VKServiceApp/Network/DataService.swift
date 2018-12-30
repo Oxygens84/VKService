@@ -21,8 +21,6 @@ class DataService {
     var user: Int
     var version: String = "5.92"
     
-    var friends: [Friend]?
-    
     init(){
         self.apiKey = Session.shared.token!
         self.user = Session.shared.userId!
@@ -81,11 +79,16 @@ class DataService {
         }
     }
     
-    func rewriteData(_ data: [FriendPhoto], user: Int){
+    func rewriteData<T: Object>(_ data: [T], user: Int? = nil){
         do {
             let realm = try Realm()
             realm.beginWrite()
-            let oldElements = realm.objects(FriendPhoto.self).filter("user_id == %@", user)
+            var oldElements: [T];
+            if user != nil {
+                oldElements = Array(realm.objects(T.self).filter("user_id == %@", user!))
+            } else {
+                oldElements = Array(realm.objects(T.self))
+            }
             realm.delete(oldElements)
             realm.add(data)
             try realm.commitWrite()
@@ -112,48 +115,22 @@ class DataService {
         return name
     }
     
-    func rewriteData(_ data: [Group]){
-        do {
-            let realm = try Realm()
-            realm.beginWrite()
-            let oldElements = realm.objects(Group.self)
-            realm.delete(oldElements)
-            realm.add(data)
-            try realm.commitWrite()
-        } catch {
-            print(error)
-        }
-    }
     
-    func loadFriendsFromRealm() -> [Friend]{
+    func loadFromRealm<T: Object>(user: Int? = nil) -> [T]{
         do {
             let realm = try Realm()
-            friends = Array(realm.objects(Friend.self))
-            return Array(realm.objects(Friend.self))
+            var res: [T];
+            if user != nil {
+                res = Array(realm.objects(T.self).filter("user_id == %@", user!))
+            } else {
+                res = Array(realm.objects(T.self))
+            }
+            return res
         } catch {
             print(error)
             return []
         }
     }
-    
-    func loadPhotosFromRealm(user: Int) -> [FriendPhoto]{
-        do {
-            let realm = try Realm()
-            return Array(realm.objects(FriendPhoto.self).filter("user_id == %@", user))
-        } catch {
-            print(error)
-            return []
-        }
-    }
-    
-    func loadGroupsFromRealm() -> [Group]{
-        do {
-            let realm = try Realm()
-            return Array(realm.objects(Group.self))
-        } catch {
-            print(error)
-            return []
-        }
-    }
+
 }
 

@@ -26,7 +26,7 @@ extension MyGroupsViewController {
     }
     
     func loadDataFromRealm(){
-        let groups = service.loadGroupsFromRealm()
+        let groups = service.loadFromRealm() as [Group]
         self.myGroups = groups
         self.filteredList = groups.sorted(by: { $0.group < $1.group })
         if self.myGroups.count == 0 {
@@ -43,11 +43,8 @@ extension MyGroupsViewController {
             case .initial(let results):
                 print(results)
                 self.loadDataFromRealm()
-            case .update(let results, let deletions, let insertions, let modifications):
+            case .update(let results):
                 print(results)
-                print(deletions)
-                print(insertions)
-                print(modifications)
                 self.loadDataFromRealm()
             case .error(let error):
                 print(error)
@@ -61,7 +58,8 @@ extension MyGroupsViewController {
         }
         
         if let indexPath = groupsListViewController.tableView.indexPathForSelectedRow{
-            let group = groupsListViewController.filteredList[indexPath.row]
+            //TODO fix broken check
+            let group = groupsListViewController.groups[indexPath.row]
             if !(isMyGroupsListContain(group: group)){
                 var element: [Group] = []
                 element.append(group)

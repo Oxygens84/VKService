@@ -32,8 +32,7 @@ extension MyNewsViewController {
     
     func updateViewsCount(){
         for news in myNews {
-            let count = news.getViewsCount() + 1
-            news.setViews(total: count)
+            news.setViews(total: news.getViewsCount() + 1)
         }
     }
     
