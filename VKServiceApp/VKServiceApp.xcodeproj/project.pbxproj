@@ -10,6 +10,11 @@
 		51175A6D216161B800D59E46 /* ImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6C216161B800D59E46 /* ImageBuilder.swift */; };
 		51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A6E21617E1800D59E46 /* ViewBuilder.swift */; };
 		51175A7121618D8400D59E46 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51175A7021618D8400D59E46 /* PhotoLike.swift */; };
+		5136E8A621E40B3800E6B89D /* FriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD3219623A9004DD340 /* FriendService.swift */; };
+		5136E8A721E40B3B00E6B89D /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD521962411004DD340 /* GroupService.swift */; };
+		5136E8A821E40B3E00E6B89D /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C4B72221C834D600D6E412 /* NewsService.swift */; };
+		5136E8AA21E40F9300E6B89D /* Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CC9D8321568CBF003A0BBC /* Dictionaries.swift */; };
+		5136E8AC21E40FCA00E6B89D /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBB216A811A00E2DDE5 /* News.swift */; };
 		513DAAE421B261D5005CD012 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 513DAAE321B261D4005CD012 /* GoogleService-Info.plist */; };
 		513DAAE621B27986005CD012 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513DAAE521B27986005CD012 /* FirebaseUser.swift */; };
 		513DAAED21BBB63E005CD012 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 513DAAEC21BBB63E005CD012 /* NotificationCenter.framework */; };
@@ -58,6 +63,7 @@
 		51DC9FBC216A811A00E2DDE5 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBB216A811A00E2DDE5 /* News.swift */; };
 		51DC9FBE216A82E600E2DDE5 /* MyNewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */; };
 		51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51DC9FBF216A9B5700E2DDE5 /* PhotoComment.swift */; };
+		51E38CA821E4BEF000D0489E /* NewsWidgetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E38CA721E4BEF000D0489E /* NewsWidgetViewCell.swift */; };
 		66699D12EA285C1D6640E80A /* Pods_VKServiceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2152D4C8345DB184418817C /* Pods_VKServiceApp.framework */; };
 		F08CAC3FE43DAF07068C39BF /* Pods_VKwidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52451F0E17F7867F6AB07711 /* Pods_VKwidget.framework */; };
 /* End PBXBuildFile section */
@@ -139,6 +145,7 @@
 		51DC9FBB216A811A00E2DDE5 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		51DC9FBD216A82E600E2DDE5 /* MyNewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNewsViewCell.swift; sourceTree = "<group>"; };
 		51DC9FBF216A9B5700E2DDE5 /* PhotoComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoComment.swift; sourceTree = "<group>"; };
+		51E38CA721E4BEF000D0489E /* NewsWidgetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsWidgetViewCell.swift; sourceTree = "<group>"; };
 		52451F0E17F7867F6AB07711 /* Pods_VKwidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKwidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FC1502B6170A7CD683B070 /* Pods-VKwidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKwidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKwidget/Pods-VKwidget.debug.xcconfig"; sourceTree = "<group>"; };
 		9461248AD8DACC279FDFD07D /* Pods-VKServiceApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKServiceApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKServiceApp/Pods-VKServiceApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				513DAAFD21BBBCE3005CD012 /* VKwidget.entitlements */,
+				51E38CA721E4BEF000D0489E /* NewsWidgetViewCell.swift */,
 				513DAAEF21BBB63E005CD012 /* TodayViewController.swift */,
 				513DAAF121BBB63E005CD012 /* MainInterface.storyboard */,
 				513DAAF421BBB63E005CD012 /* Info.plist */,
@@ -449,7 +457,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Oxana Lobysheva";
 				TargetAttributes = {
 					513DAAEA21BBB63E005CD012 = {
@@ -636,9 +644,15 @@
 				516B3E1521BC0980004DF698 /* Session.swift in Sources */,
 				516B3E1221BC07EB004DF698 /* Friend.swift in Sources */,
 				513DAAF021BBB63E005CD012 /* TodayViewController.swift in Sources */,
+				5136E8AA21E40F9300E6B89D /* Dictionaries.swift in Sources */,
+				5136E8A821E40B3E00E6B89D /* NewsService.swift in Sources */,
+				5136E8AC21E40FCA00E6B89D /* News.swift in Sources */,
+				5136E8A721E40B3B00E6B89D /* GroupService.swift in Sources */,
+				51E38CA821E4BEF000D0489E /* NewsWidgetViewCell.swift in Sources */,
 				516B3E1B21BC0C35004DF698 /* Group.swift in Sources */,
 				516B3E1821BC09E6004DF698 /* FriendPhoto.swift in Sources */,
 				513DAB0021BBC013005CD012 /* DataService.swift in Sources */,
+				5136E8A621E40B3800E6B89D /* FriendService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,6 +800,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -793,6 +808,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -844,6 +860,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -851,6 +868,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

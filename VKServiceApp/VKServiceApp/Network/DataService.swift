@@ -20,10 +20,18 @@ class DataService {
     var apiKey: String
     var user: Int
     var version: String = "5.92"
+    var sharedDefaults = UserDefaults(suiteName: "group.ru.vkServiceApp")
     
     init(){
-        self.apiKey = Session.shared.token!
-        self.user = Session.shared.userId!
+        if Session.shared.token != nil {
+            self.apiKey = Session.shared.token!
+        } else {
+            self.apiKey = sharedDefaults?.string(forKey: DefaultKey.tokenField) ?? "noKey"
+        }
+        self.user = Session.shared.userId ?? -1
+        if let key = Session.shared.token {
+            sharedDefaults?.set(key, forKey: DefaultKey.tokenField)
+        }
     }
 
     

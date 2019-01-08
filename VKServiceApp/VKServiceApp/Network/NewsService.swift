@@ -36,4 +36,6 @@ class NewsService: DataService {
             }
         }
     }
+    
+    
 }

@@ -20,6 +20,7 @@ enum CellNames: String {
     case myGroupCell = "MyGroupCell"
     case allGroupCell = "AllGroupCell"
     case myNewsCell = "MyNewsCell"
+    case myNewsWidgetCell = "MyNewsWidgetCell"
 }
 
 enum Messages: String {

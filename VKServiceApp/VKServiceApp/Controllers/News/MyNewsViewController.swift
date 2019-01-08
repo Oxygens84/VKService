@@ -69,8 +69,7 @@ class MyNewsViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsCell.rawValue, for: indexPath) as! MyNewsViewCell
         let news = myNews[indexPath.row]
-     
-        cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+    cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         cell.newsImage.isUserInteractionEnabled = true
         cell.newsImage.tag = indexPath.row
         

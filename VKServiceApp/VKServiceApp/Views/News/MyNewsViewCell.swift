@@ -1,5 +1,5 @@
 //
-//  NewsViewCell.swift
+//  MyNewsViewCell.swift
 //  VKServiceApp
 //
 //  Created by Oxana Lobysheva on 07/10/2018.
