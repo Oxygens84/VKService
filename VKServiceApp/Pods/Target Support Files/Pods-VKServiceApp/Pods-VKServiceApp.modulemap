@@ -1,6 +1,0 @@
-framework module Pods_VKServiceApp {
-  umbrella header "Pods-VKServiceApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
