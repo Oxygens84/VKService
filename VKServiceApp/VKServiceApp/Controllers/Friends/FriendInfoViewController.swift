@@ -14,7 +14,7 @@ enum SwipesOptions{
     case right
 }
 
-class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  {
+class FriendInfoViewController: UICollectionViewController, CAAnimationDelegate, UICollectionViewDelegateFlowLayout  {
 
     var friend: Friend?
     var imageNames: [FriendPhoto] = []
@@ -51,10 +51,14 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenSize: CGRect = UIScreen.main.bounds
-        return CGSize(width: screenSize.width-100, height: screenSize.height-100)
+        if UIDevice.current.orientation == .portrait ||
+            UIDevice.current.orientation == .portraitUpsideDown {
+            return CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height-100)
+        } else {
+            return CGSize(width: UIScreen.main.bounds.size.width*0.6, height: UIScreen.main.bounds.size.height)
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,11 +86,6 @@ class FriendInfoViewController: UICollectionViewController,CAAnimationDelegate  
             cell.addGestureRecognizer(swipeFromLeft)
         }
         return cell
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return UIScreen.main.bounds.size
     }
 
 }

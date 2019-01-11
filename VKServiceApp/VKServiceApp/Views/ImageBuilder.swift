@@ -14,15 +14,11 @@ import UIKit
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
+        setCircleFrame()
     }
 
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        setup()
-    }
-
-    func setup () {
         setCircleFrame()
     }
 

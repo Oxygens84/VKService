@@ -18,7 +18,7 @@ extension MyGroupsViewController {
                 print(error)
             }
             if let myGroups = myGroups {
-                self.myGroups = myGroups
+                self.myGroups = myGroups.sorted(by: { $0.group < $1.group })
                 self.filteredList = myGroups.sorted(by: { $0.group < $1.group })
             }
         }
@@ -37,7 +37,6 @@ extension MyGroupsViewController {
     
     func observeMyGroups(){
         let data = realm.objects(Group.self)
-        print(data)
         notificationToken = data.observe { (changes) in
             switch changes {
             case .initial(let results):
@@ -58,8 +57,7 @@ extension MyGroupsViewController {
         }
         
         if let indexPath = groupsListViewController.tableView.indexPathForSelectedRow{
-            //TODO fix broken check
-            let group = groupsListViewController.groups[indexPath.row]
+            let group = groupsListViewController.filteredList[indexPath.row]
             if !(isMyGroupsListContain(group: group)){
                 var element: [Group] = []
                 element.append(group)

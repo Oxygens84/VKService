@@ -87,8 +87,7 @@ extension MyFriendsViewController {
     
     func loadDataFromRealm(){
         usedSection.removeAll()
-        var friends = service.loadFromRealm() as [Friend]
-        friends = friends.sorted(by: { $0.friend < $1.friend })
+        let friends = service.loadFromRealm().sorted(by: { $0.friend < $1.friend }) as [Friend]
         self.friendsInfoSorted = friends
         self.filteredList = friends
         if self.filteredList.count == 0 {
