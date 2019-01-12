@@ -50,8 +50,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         return news!.count
     }
     
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsWidgetCell.rawValue, for: indexPath) as! NewsWidgetViewCell
         let news = self.news?[indexPath.row]
 
@@ -94,9 +94,13 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
                 completion?(nil, error)
                 return
             }
-            if let value = response.data, let json = try? JSON(data: value){
-                let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
-                completion?(news, nil)
+            DispatchQueue.global().async{
+                if let value = response.data, let json = try? JSON(data: value){
+                    let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
+                    DispatchQueue.main.async {
+                        completion?(news, nil)
+                    }
+                }
             }
         }
     }
