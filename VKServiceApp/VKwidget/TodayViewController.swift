@@ -37,9 +37,8 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .compact {
             self.preferredContentSize = maxSize
-            //if news!.count > 0 {
-            //    newsCount.text = news![0].getTitle()
-            //}
+            //for testing
+            newsCount.text = "Last news : " + String(news!.count)
         } else {
             let newHeight = CGFloat(news!.count * 44 + 66)
             self.preferredContentSize = CGSize(width: maxSize.width, height: newHeight)
@@ -55,7 +54,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsWidgetCell.rawValue, for: indexPath) as! NewsWidgetViewCell
         let news = self.news?[indexPath.row]
 
-        cell.newsTitle.text = news!.getTitle()
+        cell.newsTitle.text = "test"//news!.getTitle()
         cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
 
         return cell
@@ -84,7 +83,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
         let parameters: Parameters = [
             "extended": 1,
             "filters": NewsType.post,
-            "count": 5,
+            "count": 3,
             "access_token": sharedDefaults?.string(forKey: DefaultKey.tokenField) ?? "noKey",
             "v": version
         ]
