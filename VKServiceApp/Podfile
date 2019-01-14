@@ -13,6 +13,7 @@ target 'VKServiceApp' do
    pod 'Firebase/Core'
    pod 'Firebase/Database'
    pod 'Firebase/Auth'
+   pod 'PinLayout'
 
   # Pods for VKServiceApp
 

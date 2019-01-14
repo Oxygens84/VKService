@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 class MyNewsViewController: UITableViewController{
   
@@ -69,15 +68,13 @@ class MyNewsViewController: UITableViewController{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsCell.rawValue, for: indexPath) as! MyNewsViewCell
         let news = myNews[indexPath.row]
-    cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        
+        cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         cell.newsImage.isUserInteractionEnabled = true
         cell.newsImage.tag = indexPath.row
         
-        cell.newsTitle.text = service.getPostAuthor(user: news.ownerId) + " \n" + news.getTitle()
-        cell.newsImage.kf.setImage(with: URL(string: news.getImage()))        
-        cell.newsLikes.text = String(news.getLikesCount())
-        cell.newsComments.text = String(news.getCommentsCount())
-        cell.newsViews.text = String(news.getViewsCount())
+        cell.configure(with: news)
+                
         heartBeatingAnimation(cell.heart, scale: 1.4)
         
         return cell

@@ -41,6 +41,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     override func viewDidLoad() {
         super.viewDidLoad()
         addSearch()
+        //tableView.rowHeight = 87
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
         self.navigationController?.delegate = self

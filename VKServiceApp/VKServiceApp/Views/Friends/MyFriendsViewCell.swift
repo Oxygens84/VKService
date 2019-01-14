@@ -13,10 +13,33 @@ class MyFriendsViewCell: UITableViewCell {
     
     @IBOutlet weak var friendName: UILabel!
     @IBOutlet weak var friendAvatar: UIImageView!
-
     
     func configure(friend: Friend){
         friendName.text = friend.friend
         friendAvatar.kf.setImage(with: URL(string: friend.avatar))
+        setNeedsLayout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        manualLayout()
+    }
+    
+    func manualLayout(){
+
+        friendAvatar.pin
+            .top()
+            .left()
+            .bottom()
+            .size(70)
+
+        friendName.pin
+            .after(of: friendAvatar)
+            .top()
+            .right()
+            .bottom()
+            .marginLeft(10)
+            .height(70)
+
     }
 }
