@@ -46,7 +46,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news!.count
+        return 5//news!.count
     }
     
         
