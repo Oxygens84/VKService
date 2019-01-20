@@ -51,7 +51,7 @@ enum Options: Int {
     }
     
     private func setupView(){
-        for optionSelected in Options.allOptions {
+        for _ in Options.allOptions {
             let button = UIButton.init(type: .system)
             button.setImage(#imageLiteral(resourceName: "CommentButton").withRenderingMode(.alwaysTemplate), for: .normal)
             if isCommented {

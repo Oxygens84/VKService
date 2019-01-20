@@ -35,7 +35,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         observeFriends()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func viewDidLoad() {
@@ -82,10 +82,8 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let isHidden = super.tableView.cellForRow(at: indexPath)?.isHidden, isHidden {
-            print(isHidden)
             return 0.0
         }
-        //return UITableView.automaticDimension
         return 87
     }
 

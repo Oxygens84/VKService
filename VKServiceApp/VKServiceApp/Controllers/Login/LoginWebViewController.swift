@@ -129,21 +129,22 @@ extension LoginViewController : WKNavigationDelegate {
         }
     }
     
-    
-    //    private func saveToFirestore(_ users: [FirebaseUser]) {
-    //        let database = Firestore.firestore()
-    //        let settings = database.settings
-    //        settings.areTimestampsInSnapshotsEnabled = true
-    //        database.settings = settings
-    //
-    //        let weathersToSend = weathers
-    //            .map { $0.toFirestore() }
-    //            .reduce([:]) { $0.merging($1) { (current, _) in current } }
-    //
-    //        database.collection("forecasts").document(self.cityname).setData(weathersToSend, merge: true) { error in
-    //            if let error = error {
-    //                print(error.localizedDescription)
-    //            } else { print("data saved")}
-    //        }
-    //    }
+    /*
+    private func saveToFirestore(_ users: [FirebaseUser]) {
+        let database = Firestore.firestore()
+        let settings = database.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        database.settings = settings
+
+        let weathersToSend = weathers
+            .map { $0.toFirestore() }
+            .reduce([:]) { $0.merging($1) { (current, _) in current } }
+
+        database.collection("forecasts").document(self.cityname).setData(weathersToSend, merge: true) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else { print("data saved")}
+        }
+    }
+    */
 }

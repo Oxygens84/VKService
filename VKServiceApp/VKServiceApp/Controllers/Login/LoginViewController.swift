@@ -14,9 +14,6 @@ import FirebaseDatabase
 
 class LoginViewController : UIViewController {
     
-    //TODO: fix bug for VKcancel_login
-    //TODO: fix bug for logOut (blank form)
-    
     //-----------------------------------
     //for testing
     var adminForTest = ["admin","12345"]

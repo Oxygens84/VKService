@@ -25,15 +25,6 @@ class FriendInfoViewController: UICollectionViewController, CAAnimationDelegate,
     var notificationToken: NotificationToken?
     
     @IBAction func valueChanged(_ sender: PhotoLike) {
-        if sender.flag == Flag.like && friend != nil{
-            if !friend!.myAvatarLike {
-                //friend!.avatarLikes = friend!.avatarLikes + 1
-                //friend!.myAvatarLike = true
-            } else if friend!.avatarLikes > 0 {
-                //friend!.avatarLikes = friend!.avatarLikes - 1
-                //friend!.myAvatarLike = false
-            }
-        }
         collectionView?.reloadData()
     }
 

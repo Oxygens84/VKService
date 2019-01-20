@@ -17,7 +17,6 @@ class FriendService: DataService {
         let parameters: Parameters = [
             "extended": 1,
             "count": 5000,
-            //crop_photo
             "fields": "photo_50",
             "access_token": apiKey,
             "v": version

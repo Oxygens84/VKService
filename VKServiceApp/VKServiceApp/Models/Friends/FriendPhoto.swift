@@ -22,7 +22,6 @@ class FriendPhoto : Object {
     
     convenience init(json: JSON, friendInfo: Friend) {
         self.init()
-        //self.id = UUID().uuidString
         let maxPhoto = json["sizes"].arrayValue.count
         if maxPhoto > 0 {
             self.photo = json["sizes"][maxPhoto-1]["url"].stringValue

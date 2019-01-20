@@ -28,7 +28,7 @@ class News {
         if maxPhoto > 0 {
             self.image = json["attachments"][0]["photo"]["sizes"][maxPhoto-1]["url"].stringValue
         }
-        //TODO comments
+        
         self.comments = []
         if (json["likes"]["user_likes"].intValue == 0) {
             self.myLike = false
@@ -45,7 +45,6 @@ class News {
         self.init()
         self.title = title
         self.image = image
-        //TODO comments
         self.comments = []
         self.myLike = myLike
         self.likesCount = likesCount

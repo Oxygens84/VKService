@@ -43,6 +43,16 @@ class MyNewsViewCell: UITableViewCell {
         self.newsComments.text = String(news.getCommentsCount())
         self.newsViews.text = String(news.getViewsCount())
 
+        setCircleFrame()
+        setNeedsLayout()
+    }
+    
+    func setCircleFrame(){
+        authorAvatar.contentMode = .scaleAspectFill
+        authorAvatar.layer.cornerRadius = authorAvatar.bounds.height / 2
+        authorAvatar.layer.borderColor = UIColor.black.cgColor
+        authorAvatar.layer.borderWidth = 1.0
+        authorAvatar.layer.masksToBounds = true
     }
 
 }

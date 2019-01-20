@@ -12,7 +12,6 @@ import RealmSwift
 
 class Friend: Object {
     
-    //TO DO add user_id
     @objc dynamic var id: Int = -1
     @objc dynamic var friend: String = ""
     @objc dynamic var avatar: String = ""
@@ -32,7 +31,6 @@ class Friend: Object {
         self.id = json["id"].intValue
         self.friend = json["first_name"].stringValue + " " + json["last_name"].stringValue
         self.avatar = json["photo_50"].stringValue
-        //TODO: get Likes from VK, move to FriendPhotoPage
         self.avatarLikes = 100
         self.myAvatarLike = false
     }
