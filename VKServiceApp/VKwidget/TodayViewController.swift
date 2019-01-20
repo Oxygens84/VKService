@@ -9,98 +9,64 @@
 import UIKit
 import NotificationCenter
 import Kingfisher
-import Alamofire
-import SwiftyJSON
 
-class TodayViewController: UIViewController, NCWidgetProviding, UITableViewDelegate, UITableViewDataSource {
+class TodayViewController: UIViewController, NCWidgetProviding {
     
     var sharedDefaults = UserDefaults(suiteName: "group.ru.vkServiceApp")
     
     let baseUrl = "https://api.vk.com/method/"
     var version: String = "5.92"
     
-    
-    private let dataService = DataService()
-    private let newsService = NewsService()
     var news: [News]? = []
-    
-    @IBOutlet weak var newsCount: UILabel!
-    @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
         loadDataFromVk()
         super.viewDidLoad()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
-        newsCount.text = "Last news : " + String(news!.count)
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .compact {
             self.preferredContentSize = maxSize
-            //for testing
-            newsCount.text = "Last news : " + String(news!.count)
         } else {
-            let newHeight = CGFloat(news!.count * 44 + 66)
+            let newHeight = CGFloat(news!.count * 110)
             self.preferredContentSize = CGSize(width: maxSize.width, height: newHeight)
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5//news!.count
-    }
-    
-        
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsWidgetCell.rawValue, for: indexPath) as! NewsWidgetViewCell
-        let news = self.news?[indexPath.row]
-
-        cell.newsTitle.text = "test"//news!.getTitle()
-        cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
-
-        return cell
-    }
-        
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         completionHandler(NCUpdateResult.newData)
     }
-    
-    func loadDataFromVk() {
-        loadNewsWithAlamofire() { (news, error) in
-            if let error = error {
-                print(error)
-            }
-            if let news = news {
-                self.news = news
-                for i in news {
-                    print(i.getTitle())
-                }
-            }
-        }
-    }
-    
-    func loadNewsWithAlamofire(completion: (([News]?, Error?) -> Void)?) {
-        let method = "newsfeed.get"
-        let parameters: Parameters = [
-            "extended": 1,
-            "filters": NewsType.post,
-            "count": 3,
-            "access_token": sharedDefaults?.string(forKey: DefaultKey.tokenField) ?? "noKey",
-            "v": version
-        ]
-        let url = baseUrl + method
-        Alamofire.request(url, method: .get, parameters: parameters).responseJSON{(response) in
-            if let error = response.error {
-                completion?(nil, error)
-                return
-            }
-            DispatchQueue.global().async{
-                if let value = response.data, let json = try? JSON(data: value){
-                    let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
-                    DispatchQueue.main.async {
-                        completion?(news, nil)
-                    }
-                }
-            }
-        }
-    }
+        
 }
+
+
+extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //prod
+        //return news.count
+        //test
+        return 3
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyNewsWidgetCell", for: indexPath) as! NewsWidgetViewCell
+        
+        //prod
+        //let news = self.news?[indexPath.row]
+        //cell.newsTitle.text = news!.getTitle()
+        //cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
+        //test
+        cell.newsImage.image = UIImage(named: "Unknown")
+        cell.newsTitle.text = "test"
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
+}
+
