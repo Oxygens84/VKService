@@ -31,16 +31,6 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         observeMyGroups()
-        
-//        ref.observe(DataEventType.value) {snapshot in
-//            var users: [FirebaseUser] = []
-//            for child in snapshot.children {
-//                if let child = child as? DataSnapshot,
-//                    let user = FirebaseUser(snapShot: child) {
-//                    users.append(user)
-//                }
-//            }
-//        }
     }
     
     override func viewDidLoad() {

@@ -9,8 +9,9 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
-class NewsService: DataService {
+class NewsService: GroupService {
     
     func loadNewsPostWithAlamofire(completion: (([News]?, Error?) -> Void)?) {
         let method = "newsfeed.get"
@@ -37,5 +38,65 @@ class NewsService: DataService {
         }
     }
     
+    func getPostAuthor(user: Int) -> String{
+        var name: String = ""
+        do {
+            let realm = try Realm()
+            //get friend
+            if user >= 0 {
+                if let element = realm.objects(Friend.self).filter("id == %@", user).first {
+                    name = element.friend
+                }
+            } else {
+                //get group
+                if let element = realm.objects(Group.self).filter("id == %@", abs(user)).first {
+                    name = element.group
+                } else {
+                    loadMyGroupDataWithAlamofire() { (myGroups, error) in
+                        if let myGroups = myGroups {
+                            for element in myGroups {
+                                if element.getGroupId() == abs(user) {
+                                    name = element.group
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+        return name
+    }
     
+    func getPostAuthorAvatar(user: Int) -> String{
+        var name: String = ""
+        do {
+            let realm = try Realm()
+            //get friend
+            if user >= 0 {
+                if let element = realm.objects(Friend.self).filter("id == %@", user).first {
+                    name = element.avatar
+                }
+            } else {
+                //get group
+                if let element = realm.objects(Group.self).filter("id == %@", abs(user)).first {
+                    name = element.avatar
+                } else {
+                    loadMyGroupDataWithAlamofire() { (myGroups, error) in
+                        if let myGroups = myGroups {
+                            for element in myGroups {
+                                if element.getGroupId() == abs(user) {
+                                    name = element.avatar
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+        return name
+    }
 }

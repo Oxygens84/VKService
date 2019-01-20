@@ -105,25 +105,6 @@ class DataService {
         }
     }
     
-    //TODO add getAuthorFromVk
-    func getPostAuthor(user: Int) -> String{
-        var name: String = ""
-        do {
-            let realm = try Realm()
-            if user >= 0 {
-                let element = realm.objects(Friend.self).filter("id == %@", user).first
-                name = element?.friend ?? ""
-            } else {
-                let element = realm.objects(Group.self).filter("id == %@", abs(user)).first
-                name = element?.group ?? ""
-            }
-        } catch {
-            print(error)
-        }
-        return name
-    }
-    
-    
     func loadFromRealm<T: Object>(user: Int? = nil) -> [T]{
         do {
             let realm = try Realm()

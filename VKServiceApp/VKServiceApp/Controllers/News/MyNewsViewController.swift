@@ -80,4 +80,8 @@ class MyNewsViewController: UITableViewController{
         return cell
     }
     
+    //in process
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 500
+    }
 }
