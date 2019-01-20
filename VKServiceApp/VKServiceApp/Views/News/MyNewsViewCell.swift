@@ -35,13 +35,19 @@ class MyNewsViewCell: UITableViewCell {
     
     public func configure(with news: News) {
         
-        self.authorAvatar.kf.setImage(with: URL(string: service.getPostAuthorAvatar(user: news.ownerId)))
-        self.authorName.text = service.getPostAuthor(user: news.ownerId)
-        self.newsTitle.text = news.getTitle()
-        self.newsImage.kf.setImage(with: URL(string: news.getImage()))
-        self.newsLikes.text = String(news.getLikesCount())
-        self.newsComments.text = String(news.getCommentsCount())
-        self.newsViews.text = String(news.getViewsCount())
+        let image = service.getPostAuthorAvatar(user: news.ownerId)
+        if !image.isEmpty {
+            authorAvatar.kf.setImage(with: URL(string: service.getPostAuthorAvatar(user: news.ownerId)))
+        } else {
+            authorAvatar.image = UIImage(named: "Unknown")
+        }
+        
+        authorName.text = service.getPostAuthor(user: news.ownerId)
+        newsTitle.text = news.getTitle()
+        newsImage.kf.setImage(with: URL(string: news.getImage()))
+        newsLikes.text = String(news.getLikesCount())
+        newsComments.text = String(news.getCommentsCount())
+        newsViews.text = String(news.getViewsCount())
 
         setCircleFrame()
         setNeedsLayout()
