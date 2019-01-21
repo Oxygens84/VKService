@@ -26,6 +26,9 @@
 		5142F3C42176758700817FFD /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C32176758700817FFD /* Animator.swift */; };
 		5142F3CA217860EC00817FFD /* CustomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3C9217860EC00817FFD /* CustomInteractiveTransition.swift */; };
 		5142F3CC2178649600817FFD /* AnimatorBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5142F3CB2178649600817FFD /* AnimatorBack.swift */; };
+		515CC35021F6571C00E3E7EE /* TodayDataLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B5134721F51FDC00E073E5 /* TodayDataLoad.swift */; };
+		515CC35121F6571F00E3E7EE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513DAAEF21BBB63E005CD012 /* TodayViewController.swift */; };
+		515CC35221F6572200E3E7EE /* NewsWidgetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E38CA721E4BEF000D0489E /* NewsWidgetViewCell.swift */; };
 		51616FD4219623A9004DD340 /* FriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD3219623A9004DD340 /* FriendService.swift */; };
 		51616FD621962411004DD340 /* GroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51616FD521962411004DD340 /* GroupService.swift */; };
 		516B3E1121BC07EB004DF698 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516B3E1021BC07EB004DF698 /* Friend.swift */; };
@@ -477,7 +480,7 @@
 					51CC9D5B2152CDC0003A0BBC = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -682,15 +685,18 @@
 				51DC9FC0216A9B5700E2DDE5 /* PhotoComment.swift in Sources */,
 				513DAAFF21BBC013005CD012 /* DataService.swift in Sources */,
 				51616FD621962411004DD340 /* GroupService.swift in Sources */,
+				515CC35121F6571F00E3E7EE /* TodayViewController.swift in Sources */,
 				51C4B73121D1881B00D6E412 /* MyFriendsExtensionController.swift in Sources */,
 				517EDB19215C21CC0072DA41 /* FriendInfoViewCell.swift in Sources */,
 				51CC9D622152CDC0003A0BBC /* LoginViewController.swift in Sources */,
+				515CC35021F6571C00E3E7EE /* TodayDataLoad.swift in Sources */,
 				517EDB1B215C2CE50072DA41 /* GroupsViewCell.swift in Sources */,
 				51C4B73321D1890F00D6E412 /* FriendExtensionController.swift in Sources */,
 				51DC9FBA216A80CE00E2DDE5 /* MyNewsViewController.swift in Sources */,
 				51CC9D7E21567938003A0BBC /* MyFriendsViewController.swift in Sources */,
 				51DC9FBE216A82E600E2DDE5 /* MyNewsViewCell.swift in Sources */,
 				51C4B72321C834D600D6E412 /* NewsService.swift in Sources */,
+				515CC35221F6572200E3E7EE /* NewsWidgetViewCell.swift in Sources */,
 				517EDB1D215C2D250072DA41 /* MyGroupsViewCell.swift in Sources */,
 				516B3E1421BC0980004DF698 /* Session.swift in Sources */,
 				51175A6F21617E1800D59E46 /* ViewBuilder.swift in Sources */,
@@ -916,12 +922,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VKServiceApp/VKServiceApp.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R2VJ6NW7EN;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.vkservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -934,11 +942,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VKServiceApp/VKServiceApp.entitlements;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R2VJ6NW7EN;
 				INFOPLIST_FILE = VKServiceApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.oxygens.vkservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

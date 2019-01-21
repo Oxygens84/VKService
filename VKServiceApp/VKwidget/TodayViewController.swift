@@ -17,6 +17,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     let baseUrl = "https://api.vk.com/method/"
     var version: String = "5.92"
     
+    @IBOutlet weak var table: UITableView!
+    
     var news: [News]? = []
     
     override func viewDidLoad() {
@@ -44,23 +46,20 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //prod
-        //return news.count
-        //test
-        return 3
+        return news!.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyNewsWidgetCell", for: indexPath) as! NewsWidgetViewCell
         
-        //prod
-        //let news = self.news?[indexPath.row]
-        //cell.newsTitle.text = news!.getTitle()
-        //cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
-        //test
-        cell.newsImage.image = UIImage(named: "Unknown")
-        cell.newsTitle.text = "test"
+        let news = self.news?[indexPath.row]
+        cell.newsTitle.text = news!.getTitle()
         
+        if !(news!.getImage().isEmpty) {
+            cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
+        } else {
+            cell.newsImage.image = UIImage(named: "Unknown")
+        }
         return cell
     }
     
@@ -69,4 +68,3 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-

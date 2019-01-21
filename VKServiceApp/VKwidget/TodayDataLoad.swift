@@ -46,6 +46,7 @@ extension TodayViewController {
                     let news = json["response"]["items"].arrayValue.map{ News(json: $0) }
                     DispatchQueue.main.async {
                         completion?(news, nil)
+                        self.table.reloadData()
                     }
                 }
             }
