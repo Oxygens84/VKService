@@ -19,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginPageBackground" translatesAutoresizingMaskIntoConstraints="NO" id="YpD-V2-bNJ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="YpD-V2-bNJ" secondAttribute="trailing" id="TuE-IW-itp"/>
-                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="20" id="XxX-kv-oTM"/>
+                            <constraint firstItem="YpD-V2-bNJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="XxX-kv-oTM"/>
                             <constraint firstItem="YpD-V2-bNJ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="fO8-3s-Xme"/>
                             <constraint firstAttribute="bottom" secondItem="YpD-V2-bNJ" secondAttribute="bottom" id="kN8-cE-8pt"/>
                         </constraints>

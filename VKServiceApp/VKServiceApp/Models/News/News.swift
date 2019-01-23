@@ -27,6 +27,8 @@ class News {
         let maxPhoto = json["attachments"][0]["photo"]["sizes"].arrayValue.count
         if maxPhoto > 0 {
             self.image = json["attachments"][0]["photo"]["sizes"][maxPhoto-1]["url"].stringValue
+        } else {
+            self.image = json["copy_history"]["attachments"][0]["photo"]["sizes"][0]["url"].stringValue            
         }
         
         self.comments = []
