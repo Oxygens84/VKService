@@ -16,6 +16,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     let baseUrl = "https://api.vk.com/method/"
     var version: String = "5.92"
+    let service = NewsService()
     
     @IBOutlet weak var table: UITableView!
     
@@ -53,7 +54,13 @@ extension TodayViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyNewsWidgetCell", for: indexPath) as! NewsWidgetViewCell
         
         let news = self.news?[indexPath.row]
-        cell.newsTitle.text = news!.getTitle()
+        
+        if !(news!.getTitle().isEmpty) {
+            cell.newsTitle.text = news!.getTitle()
+        } else {
+            print(news!.ownerId)
+            cell.newsTitle.text = service.getPostAuthor(user: news!.ownerId)
+        }
         
         if !(news!.getImage().isEmpty) {
             cell.newsImage.kf.setImage(with: URL(string: news!.getImage()))
