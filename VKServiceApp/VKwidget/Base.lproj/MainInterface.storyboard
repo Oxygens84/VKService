@@ -25,7 +25,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACk-PL-pfQ">
-                                            <rect key="frame" x="110" y="16" width="194" height="88"/>
+                                            <rect key="frame" x="110" y="11" width="194" height="88"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -42,8 +42,8 @@
                                         <constraint firstItem="fWm-Te-81a" firstAttribute="leading" secondItem="MrA-ho-TSc" secondAttribute="leading" constant="5" id="95Y-p8-LH6"/>
                                         <constraint firstItem="fWm-Te-81a" firstAttribute="top" secondItem="MrA-ho-TSc" secondAttribute="top" constant="5" id="Vsv-6S-uBq"/>
                                         <constraint firstItem="ACk-PL-pfQ" firstAttribute="leading" secondItem="fWm-Te-81a" secondAttribute="trailing" constant="5" id="W5c-nF-0Gs"/>
-                                        <constraint firstItem="ACk-PL-pfQ" firstAttribute="top" secondItem="MrA-ho-TSc" secondAttribute="topMargin" constant="5" id="hgr-We-WYD"/>
-                                        <constraint firstItem="ACk-PL-pfQ" firstAttribute="bottom" secondItem="MrA-ho-TSc" secondAttribute="bottomMargin" constant="5" id="uAO-DC-joS"/>
+                                        <constraint firstItem="ACk-PL-pfQ" firstAttribute="top" secondItem="MrA-ho-TSc" secondAttribute="topMargin" id="hgr-We-WYD"/>
+                                        <constraint firstItem="ACk-PL-pfQ" firstAttribute="bottom" secondItem="MrA-ho-TSc" secondAttribute="bottomMargin" id="uAO-DC-joS"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="ACk-PL-pfQ" secondAttribute="trailing" id="zBd-pp-c6t"/>
                                     </constraints>
                                 </tableViewCellContentView>
