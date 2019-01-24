@@ -62,13 +62,11 @@ class MyGroupsViewController: UITableViewController, UISearchBarDelegate  {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete){
-            if let index: Int = indexPath.row {
-                for i in (0..<myGroups.count).reversed() {
-                    if filteredList[index].getGroupId() == myGroups[i].getGroupId() {
-                       service.deleteData(myGroups[i])
-                       myGroups.remove(at: i)
-                       break
-                    }
+            for i in (0..<myGroups.count).reversed() {
+                if filteredList[indexPath.row].getGroupId() == myGroups[i].getGroupId() {
+                   service.deleteData(myGroups[i])
+                   myGroups.remove(at: i)
+                   break
                 }
             }
             filterList()

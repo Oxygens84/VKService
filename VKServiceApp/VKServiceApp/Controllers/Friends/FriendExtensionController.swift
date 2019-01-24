@@ -35,7 +35,6 @@ extension FriendInfoViewController {
     
     func observeFriendPhotos(){
         let data = realm.objects(FriendPhoto.self)
-        print(data)
         notificationToken = data.observe { (changes) in
             switch changes {
             case .initial(let results):

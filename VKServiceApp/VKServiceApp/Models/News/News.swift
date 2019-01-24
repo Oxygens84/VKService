@@ -19,6 +19,7 @@ class News {
     var commentsCount: Int = 0
     var likesCount: Int = 0
     var viewsCount: Int = 0
+    var repostCount: Int = 0
     var ownerId: Int = -1
     
     convenience init(json: JSON) {
@@ -31,6 +32,7 @@ class News {
         self.likesCount = getPostLikesCount(from: json)
         self.commentsCount = getPostCommentsCount(from: json)
         self.viewsCount = getPostViewCount(from: json)
+        self.repostCount = getPostRepostCount(from: json)
         self.ownerId = getPostOwnerId(from: json)
     }
     
@@ -59,11 +61,12 @@ class News {
         return json["views"]["count"].intValue
     }
     
+    func getPostRepostCount(from json: JSON) -> Int {
+        return json["reposts"]["count"].intValue
+    }
+    
     func getPostOwnerId(from json: JSON) -> Int {
-        if (json["copy_history"].arrayValue.count > 0){
-            return json["copy_history"][0]["owner_id"].intValue
-        }
-        return json["attachments"][0]["photo"]["owner_id"].intValue
+        return json["source_id"].intValue
     }
     
     func getPostMyLike(from json: JSON) -> Bool {
@@ -139,6 +142,10 @@ class News {
     
     func setImageComments(total: Int){
         commentsCount = total
+    }
+    
+    func getRepostCount() -> Int{
+        return repostCount
     }
     
     func setViews(total: Int){

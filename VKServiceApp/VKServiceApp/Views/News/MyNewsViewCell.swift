@@ -26,6 +26,7 @@ class MyNewsViewCell: UITableViewCell {
     @IBOutlet weak var newsLikes: UILabel!
     @IBOutlet weak var newsComments: UILabel!
     
+    @IBOutlet weak var newsReposts: UILabel!
     @IBOutlet weak var newsViewsIcon: UIView!
     
     @IBAction func newsSendButton(_ sender: Any) {
@@ -47,6 +48,7 @@ class MyNewsViewCell: UITableViewCell {
         newsImage.kf.setImage(with: URL(string: news.getImage()))
         newsLikes.text = String(news.getLikesCount())
         newsComments.text = String(news.getCommentsCount())
+        newsReposts.text = String(news.getRepostCount())
         newsViews.text = String(news.getViewsCount())
 
         setCircleFrame()

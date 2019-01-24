@@ -6,6 +6,8 @@
 //  Copyright © 2018 Oxana Lobysheva. All rights reserved.
 //
 
+import UIKit
+
 extension MyNewsViewController {
     
     func loadDataFromVk() {
@@ -36,4 +38,20 @@ extension MyNewsViewController {
         }
     }
     
+    @IBAction func refreshButtonTapped(_ sender: Any) {
+        loadDataFromVk()
+    }
+    
+    @objc func handlerRefresh(){
+        loadDataFromVk()
+        refresher.endRefreshing()
+    }
+    
+    func addRefresher(){
+        refresher = UIRefreshControl()
+        tableView.addSubview(refresher)
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.tintColor = UIColor.purple
+        refresher.addTarget(self, action: #selector(handlerRefresh), for: .valueChanged)
+    }
 }

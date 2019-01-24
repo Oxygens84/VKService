@@ -13,6 +13,8 @@ class MyNewsViewController: UITableViewController{
     let service = NewsService()
     var myNews: [News] = []
     
+    var refresher: UIRefreshControl!
+    
     @objc func handleTap(sender: UITapGestureRecognizer) {
         let indexPath = NSIndexPath(row: sender.view!.tag, section: 0)
         let cell = tableView.cellForRow(at: indexPath as IndexPath) as! MyNewsViewCell
@@ -55,6 +57,7 @@ class MyNewsViewController: UITableViewController{
         loadDataFromVk()
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = UITableView.automaticDimension
+        addRefresher()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -69,14 +72,14 @@ class MyNewsViewController: UITableViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: CellNames.myNewsCell.rawValue, for: indexPath) as! MyNewsViewCell
         let news = myNews[indexPath.row]
         
+        heartBeatingAnimation(cell.heart, scale: 1.4)
+        
         cell.newsImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         cell.newsImage.isUserInteractionEnabled = true
         cell.newsImage.tag = indexPath.row
         
         cell.configure(with: news)
                 
-        heartBeatingAnimation(cell.heart, scale: 1.4)
-        
         return cell
     }
     
