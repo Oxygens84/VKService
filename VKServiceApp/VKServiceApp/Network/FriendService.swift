@@ -13,10 +13,10 @@ import SwiftyJSON
 class FriendService: DataService {
     
     func loadFriendDataWithAlamofire(completion: (([Friend]?, Error?) -> Void)?) {
-        let method = "apps.getFriendsList?"
+        let method = "friends.get?"
         let parameters: Parameters = [
             "extended": 1,
-            "count": 5000,
+            "count": 1000,
             "fields": "photo_50",
             "access_token": apiKey,
             "v": version

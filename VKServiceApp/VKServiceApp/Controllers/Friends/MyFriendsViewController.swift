@@ -35,7 +35,7 @@ class MyFriendsViewController: UITableViewController, UISearchBarDelegate, UINav
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         observeFriends()
-        //print(Realm.Configuration.defaultConfiguration.fileURL!)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func viewDidLoad() {
